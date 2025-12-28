@@ -89,7 +89,20 @@ a {
 strong {
   font-family: 'Space Grotesk', Verdana, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
+}
+
+b {
+  font-family: 'Space Grotesk', Verdana, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+b a {
+  font-weight: 700;
+}
+
+strong a {
+  font-weight: 700;
 }
 
 h2 {
