@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GPWM</title>
-<meta name="description" content="GPWM: Generative Particle World Models for 3D Prediction and Planning.">
+<title>GPWM: Generative Particle World Models for 3D Prediction and Planning</title>
+<meta name="description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://robertren1122.github.io/gpwm/">
+<meta property="og:title" content="GPWM: Generative Particle World Models for 3D Prediction and Planning">
+<meta property="og:description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
+<meta property="og:image" content="https://robertren1122.github.io/gpwm/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GPWM: Generative Particle World Models for 3D Prediction and Planning">
+<meta name="twitter:description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
+<meta name="twitter:image" content="https://robertren1122.github.io/gpwm/media/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
@@ -81,6 +93,14 @@ a { color: inherit; }
 .hero .authors { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.55; color: var(--ink); margin: 0 0 10px; text-wrap: balance; }
 .hero .authors sup, .hero .affil sup { font-size: .65em; line-height: 0; }
 .hero .affil { font-family: var(--mono); font-size: var(--fs-s); color: var(--sub); letter-spacing: .02em; margin: 0 0 20px; }
+.nw { white-space: nowrap; }
+.hero .logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 44px; width: fit-content; max-width: 100%; margin: 0 auto 24px; padding: 12px 22px; border-radius: 14px; box-sizing: border-box; }
+.hero .logos img { display: block; width: auto; max-width: 100%; }
+.hero .logos .logo-cmu { height: clamp(26px, 4.2vw, 40px); }
+.hero .logos .logo-tri { height: clamp(42px, 6.4vw, 62px); }
+/* the logos keep their official colours, so give them a light backing at night */
+:root[data-theme="dark"] .hero .logos { background: #f3f4f6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .logos { background: #f3f4f6; } }
 .hero .links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .hero .wrap { text-align: center; }                                                /* the title block, centred over the abstract */
 .chips { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: var(--fs-xs); color: var(--sub); margin-top: 22px; }
@@ -372,9 +392,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <section class="hero">
     <div class="wrap">
       <h1>GPWM: <b>G</b>enerative <b>P</b>article <b>W</b>orld <b>M</b>odels<br class="brw"> for 3D Prediction and Planning</h1>
-      <p class="authors">Robert Ren<sup>1,*</sup>, Matthew Bronars<sup>1,*</sup>, He Zhu<sup>1</sup>, Yikai Tang<sup>1</sup>, Jianing Zhang<sup>1</sup>,<br>Sergey Zakharov<sup>2</sup>, Pavel Tokmakov<sup>2</sup>, Katerina Fragkiadaki<sup>1</sup></p>
-      <p class="affil"><sup>1</sup>Carnegie Mellon University &nbsp;&middot;&nbsp; <sup>2</sup>Toyota Research Institute &nbsp;&middot;&nbsp; <sup>*</sup>Equal contribution</p>
-      <div class="links"><span class="pill off">arXiv &middot; coming soon</span><span class="pill off">Code &middot; coming soon</span></div>
+      <p class="authors"><span class="nw">Robert Ren<sup>1,*</sup></span>, <span class="nw">Matthew Bronars<sup>1,*</sup></span>, <span class="nw">He Zhu<sup>1</sup></span>, <span class="nw">Yikai Tang<sup>1</sup></span>, <span class="nw">Jianing Zhang<sup>1</sup></span>,<br><span class="nw">Sergey Zakharov<sup>2</sup></span>, <span class="nw">Pavel Tokmakov<sup>2</sup></span>, <span class="nw">Katerina Fragkiadaki<sup>1</sup></span></p>
+      <p class="affil"><span class="nw"><sup>1</sup>Carnegie Mellon University</span>&nbsp;&middot; <span class="nw"><sup>2</sup>Toyota Research Institute</span>&nbsp;&middot; <span class="nw"><sup>*</sup>Equal contribution</span></p>
+      <div class="logos"><img class="logo-cmu" src="media/logo-cmu.png" alt="Carnegie Mellon University" width="1599" height="156"><img class="logo-tri" src="media/logo-tri.png" alt="Toyota Research Institute" width="1200" height="317"></div>
+      <div class="links"><a class="pill" href="paper.pdf">Paper</a><span class="pill off">arXiv &middot; coming soon</span><span class="pill off">Code &middot; coming soon</span></div>
     </div>
   </section>
 
