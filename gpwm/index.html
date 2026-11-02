@@ -92,7 +92,7 @@ a { color: inherit; }
 .hero .who { font-family: var(--mono); font-size: var(--fs-s); color: var(--sub); letter-spacing: .02em; margin: 0 0 18px; }
 .hero .authors { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.55; color: var(--ink); margin: 0 0 10px; text-wrap: balance; }
 .hero .authors sup, .hero .affil sup { font-size: .65em; line-height: 0; }
-.hero .affil { font-family: var(--mono); font-size: var(--fs-s); color: var(--sub); letter-spacing: .02em; margin: 0 0 20px; }
+.hero .affil { font-family: var(--mono); font-size: 15px; color: var(--sub); letter-spacing: .02em; margin: 0 0 20px; }
 .nw { white-space: nowrap; }
 .hero .logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 44px; width: fit-content; max-width: 100%; margin: 0 auto 24px; padding: 12px 22px; border-radius: 14px; box-sizing: border-box; }
 .hero .logos img { display: block; width: auto; max-width: 100%; }
@@ -101,7 +101,8 @@ a { color: inherit; }
 /* the logos keep their official colours, so give them a light backing at night */
 :root[data-theme="dark"] .hero .logos { background: #f3f4f6; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .logos { background: #f3f4f6; } }
-.hero .links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.hero .links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.hero .links .pill { font-size: 16px; line-height: 20px; padding: 10px 20px; border-radius: 22px; }
 .hero .wrap { text-align: center; }                                                /* the title block, centred over the abstract */
 .chips { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: var(--fs-xs); color: var(--sub); margin-top: 22px; }
 .chips b { color: var(--ink); font-weight: 400; }
