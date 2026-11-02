@@ -370,6 +370,20 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .pd-scene-ctl, .scene--planning .pd-scene-ctl { left: 16px; right: 16px; width: auto; top: 12px; bottom: auto; transform: none; }
 }
 
+/* ---- demo: the Hugging Face Space loads only when asked ---- */
+.demo-embed { position: relative; margin-top: 28px; border: 1px solid var(--g300); border-radius: 14px; overflow: hidden; background: var(--card); }
+.demo-embed img { display: block; width: 100%; height: auto; }
+.demo-embed::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.35); pointer-events: none; }
+.demo-embed.live::after { display: none; }
+.demo-embed:not(.live) { cursor: pointer; }
+.demo-run { all: unset; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; cursor: pointer;
+  font-family: var(--mono); font-size: 16px; line-height: 20px; letter-spacing: .02em; padding: 13px 26px; border-radius: 26px;
+  background: var(--ink); color: var(--bg); box-shadow: 0 8px 28px rgba(0,0,0,.18); white-space: nowrap; }
+.demo-run:hover { background: var(--accent); }
+.demo-run:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.demo-embed iframe { display: block; width: 100%; height: min(820px, 85vh); border: 0; background: #fff; }
+.demo-note { font-family: var(--mono); font-size: var(--fs-s); line-height: var(--lh-s); color: var(--sub); margin: 12px 0 0; }
+.demo-note a { color: inherit; }
 </style>
 </head>
 <body>
@@ -383,6 +397,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <a href="#comparison">Comparison</a>
     <a href="#planning">Planning</a>
     <a href="#real-world">Real world</a>
+    <a href="#demo">Demo</a>
     <a href="#results">Results</a>
     <a href="#bibtex">BibTeX</a>
   </nav>
@@ -482,6 +497,32 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <p class="lede">Click the table to drop an elastic or a sand ball.</p>
     </div>
     <div class="pd-stage" data-scene="realworld" data-only="drop" role="img" aria-label="An interactive 3D view of the desk photo: click the table to drop an elastic or a sand ball there and watch the predicted fall."></div>
+  </section>
+
+  <section class="sec" id="demo">
+    <div class="wrap">
+      <p class="eyebrow-s">Demo</p>
+      <h2>Try the full model</h2>
+      <p class="lede">Drop and drag objects reconstructed from photos, and GPWM predicts the next two seconds. The demo runs on Hugging Face and may take a moment to start.</p>
+      <div class="demo-embed" data-src="https://robertren1-gpwm-simulation.hf.space/?__theme=light">
+        <img src="media/demo_poster.jpg" alt="The GPWM Simulation demo: a 3D table with objects reconstructed from photos, a Run button and a gallery of 135 objects." width="1600" height="1011" loading="lazy">
+        <button class="demo-run" type="button">Run the demo</button>
+      </div>
+      <p class="demo-note"><a href="https://huggingface.co/spaces/robertren1/gpwm-simulation" target="_blank" rel="noopener">Open it on Hugging Face&nbsp;&#8599;</a> for full screen, or if the embedded demo reports a GPU quota limit.</p>
+    </div>
+    <script>
+    (function () {   /* swap the screenshot for the live Space on click */
+      'use strict';
+      document.querySelectorAll('.demo-embed').forEach(box => {
+        box.addEventListener('click', () => {   // the button, or anywhere on the screenshot
+          if (box.classList.contains('live')) return;
+          const f = document.createElement('iframe');
+          f.src = box.dataset.src; f.title = 'GPWM Simulation demo'; f.allow = 'clipboard-write; fullscreen';
+          box.replaceChildren(f); box.classList.add('live');
+        });
+      });
+    })();
+    </script>
   </section>
 
   <section class="sec" id="results">
