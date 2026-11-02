@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GPWM: Generative Particle World Models for 3D Prediction and Planning</title>
+<title>Particle Motion World Models</title>
 <meta name="description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://robertren1122.github.io/gpwm/">
-<meta property="og:title" content="GPWM: Generative Particle World Models for 3D Prediction and Planning">
+<meta property="og:title" content="Particle Motion World Models">
 <meta property="og:description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
 <meta property="og:image" content="https://robertren1122.github.io/gpwm/media/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GPWM: Generative Particle World Models for 3D Prediction and Planning">
+<meta name="twitter:title" content="Particle Motion World Models">
 <meta name="twitter:description" content="A generative world model that learns 3D physical dynamics directly from particle trajectories across rigid, deformable, cloth, and granular materials, and enables contact-rich planning.">
 <meta name="twitter:image" content="https://robertren1122.github.io/gpwm/media/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -391,7 +391,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <h1>GPWM: <b>G</b>enerative <b>P</b>article <b>W</b>orld <b>M</b>odels<br class="brw"> for 3D Prediction and Planning</h1>
+      <h1>Particle Motion World Models</h1>
       <p class="authors"><span class="nw">Robert Ren<sup>1,*</sup></span>, <span class="nw">Matthew Bronars<sup>1,*</sup></span>, <span class="nw">He Zhu<sup>1</sup></span>, <span class="nw">Yikai Tang<sup>1</sup></span>, <span class="nw">Jianing Zhang<sup>1</sup></span>,<br><span class="nw">Sergey Zakharov<sup>2</sup></span>, <span class="nw">Pavel Tokmakov<sup>2</sup></span>, <span class="nw">Katerina Fragkiadaki<sup>1</sup></span></p>
       <p class="affil"><span class="nw"><sup>1</sup>Carnegie Mellon University</span>&nbsp;&middot; <span class="nw"><sup>2</sup>Toyota Research Institute</span>&nbsp;&middot; <span class="nw"><sup>*</sup>Equal contribution</span></p>
       <div class="logos"><img class="logo-cmu" src="media/logo-cmu.png" alt="Carnegie Mellon University" width="1599" height="156"><img class="logo-tri" src="media/logo-tri.png" alt="Toyota Research Institute" width="1200" height="317"></div>
@@ -403,9 +403,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap abs-center">
       <p class="eyebrow-s">Abstract</p>
         <div class="abstract">
-          <p>We introduce GPWM, <b>a generative world model that learns 3D physical dynamics directly from particle trajectories</b>. Its shared representation and architecture covers rigid, deformable, cloth, and granular materials, in both passive physics and robotic interaction. GPWM is an <b>object-aware multi-resolution transformer</b> that combines <b>flow matching with diffusion forcing</b> to enable streaming generation far beyond the training horizon. We train and evaluate GPWM on <b>ParticleWorlds, a 25.5-million-frame corpus</b> spanning diverse geometries, physical properties, interactions, and robot embodiments.</p>
-          <p>When trained within individual domains, GPWM <b>reduces prediction error by 29&ndash;53%</b> relative to the strongest applicable prior learned-dynamics models. Going beyond the domain-specific setting of prior methods, <b>a single <i>Unified</i> GPWM</b> jointly models heterogeneous physical regimes within one set of weights. GPWM further generalizes to unseen geometries, physical properties, object counts, and rollout horizons.</p>
-          <p>Beyond prediction, GPWM enables <b>contact-rich planning</b>. An object-space goal reward is backpropagated through the learned interaction dynamics to the latent noise, steering actuator motion and the contacts it establishes. Executed open-loop in simulation, the resulting plans <b>outperform unguided generation and planning with prior learned dynamics models</b> on pushing, picking, and granular manipulation.</p>
+          <p>We introduce GPWM, a <b>G</b>enerative <b>P</b>article <b>W</b>orld <b>M</b>odel that <b>predicts how 3D scenes evolve by generating the motion of particles and rigid bodies over time</b>. Unlike video world models that generate scene appearance, GPWM operates directly in 3D physical space, modeling rigid, deformable, cloth, and granular dynamics within a common architecture. An <b>object-aware multi-resolution transformer</b> combines <b>flow matching with diffusion forcing</b> to generate coherent physical trajectories far beyond its training horizon.</p>
+          <p>We train and evaluate GPWM on ParticleWorlds, a 25.5-million-frame corpus spanning diverse geometries, materials, interactions, and robot embodiments. Across six physical domains, GPWM <b>reduces prediction error by 30% on average</b> relative to the strongest applicable prior learned-dynamics models. Going beyond the domain-specific setting of prior methods, <b>a single <i>Unified</i> GPWM</b> models heterogeneous physical regimes within one set of weights, outperforming domain-specific models in several settings. GPWM further generalizes to unseen geometries, physical properties, object counts, and rollout horizons.</p>
+          <p>Beyond prediction, GPWM enables <b>contact-rich planning</b> by learning a generative prior over joint actuator&ndash;object motion. Rather than searching directly over unconstrained actions, planning searches the model&rsquo;s latent noise to generate interactions that achieve desired object-space goals. Even using the same world model, <b>noise-space planning substantially outperforms action-space search</b> on pushing and picking, where complex contact sequences are difficult to discover. Executed open-loop in simulation, the resulting plans achieve goal-directed manipulation without reference action trajectories or goal-specific policies.</p>
         </div>
     </div>
   </section>
@@ -451,8 +451,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <section class="sec" id="planning">
     <div class="wrap">
       <p class="eyebrow-s">Planning</p>
-      <h2>Reward-guided planning</h2>
-      <p class="lede">A differentiable reward specifies the desired final configuration of the passive objects. With the world model fixed, the object-space reward guides actuator motion through the learned joint dynamics, without requiring a reference actuator trajectory or training a goal-specific policy.</p>
+      <h2>Planning with a generative interaction prior</h2>
+      <p class="lede">GPWM generates actuator and object motion jointly, so planning can search its latent noise instead of raw actions. Latent noise optimization backpropagates a reward on the desired final object configuration through the generated trajectory, and the actuator part of the result is executed open-loop in simulation, with no reference action trajectory or goal-specific policy. Using the same world model, noise-space planning substantially outperforms action-space search on pushing and picking.</p>
     </div>
     <div class="pd-stage" data-scene="planning" aria-label="Guided generation on a pick-and-place task over a barrier: a block diagram of the reward's gradient flowing back to the starting noise, the loss falling over the updates of the noise, the imagined motion after each update, then the chosen plan and its execution in simulation"></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="planning" role="img" aria-label="A robot arm in simulation executes three plans for the same milk carton: an unguided sample, a plan guided to a target, and a plan guided to the target over a wall."></div>
@@ -486,8 +486,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <section class="sec" id="results">
     <div class="wrap">
       <p class="eyebrow-s">Results</p>
-      <h2>Prediction and planning, in numbers</h2>
-      <div class="bars" data-bars="prediction,planning"></div>
+      <h2>Prediction, in numbers</h2>
+      <div class="bars" data-bars="prediction"></div>
     </div>
   </section>
 
@@ -495,7 +495,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap">
       <p class="eyebrow-s">BibTeX</p>
       <div class="bib"><pre id="bibtex-text">@article{ren2026gpwm,
-  title   = {{GPWM}: Generative Particle World Models for {3D} Prediction and Planning},
+  title   = {Particle Motion World Models},
   author  = {Ren, Robert and Bronars, Matthew and Zhu, He and Tang, Yikai and Zhang, Jianing
              and Zakharov, Sergey and Tokmakov, Pavel and Fragkiadaki, Katerina},
   journal = {arXiv preprint},
@@ -1076,18 +1076,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         { name: 'Graph/grid-based', sub: 'specialist', role: 'base' },
       ],
       tabs: [
-        { name: 'Free Fall', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [44.4, 60.6, 53.0, null, 97.2] },
-        { name: 'Dragging', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [8.8, 9.0, 7.8, null, 48.6] },
-        { name: 'Garment Folding', tab: 'Garment', metric: 'average symmetric Chamfer distance', unit: 'mm', better: 'lower', values: [34.8, 64.0, 123.3, 73.4, 159.4] },
-        { name: 'Pushing', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [17.5, 23.3, 24.5, 32.7, 158.7] },
-        { name: 'Pick and Place', tab: 'Pick & Place', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [20.3, 13.1, 34.1, 171.2, null] },
-        { name: 'Dexterous Hands', tab: 'Dexterous', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [24.7, 26.6, 24.8, 27.4, null] },
+        { name: 'Free Fall', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [44.4, 41.5, 53.0, null, 97.2] },
+        { name: 'Dragging', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [8.8, 6.1, 7.8, null, 30.4] },
+        { name: 'Garment Folding', tab: 'Garment', metric: 'average symmetric Chamfer distance', unit: 'mm', better: 'lower', values: [10.0, 10.8, 10.7, 10.6, 20.5] },
+        { name: 'Pushing', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [13.9, 18.0, 24.5, 28.7, 24.5] },
+        { name: 'Pick and Place', tab: 'Pick & Place', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [20.3, 11.1, 34.1, 39.8, null] },
+        { name: 'Dexterous Hands', tab: 'Dexterous', metric: 'mean particle position error', unit: 'mm', better: 'lower', values: [19.7, 22.6, 24.8, 27.4, null] },
       ],
       fmt: v => v.toFixed(1),                    // as printed in the paper
       short: 'Baselines and GPWM specialists are trained separately for each setting; GPWM unified uses a single model across heterogeneous settings.',
       caption: 'Prediction error in millimeters (lower is better): mean Euclidean position error over passive-object particles, ' +
-        'averaging over particles and frames and then equally across trajectories. Garment Folding reports average symmetric ' +
-        'Chamfer distance. Graph/grid-based denotes GNS or PGND, depending on the setting. N/A: not available.',
+        'averaging over particles and frames and then equally across trajectories. Garment Folding reports symmetric Chamfer ' +
+        'distance averaged over 898 predicted frames on 20 test trajectories. Graph/grid-based denotes GNS or PGND, depending on the setting. N/A: not available.',
     },
     planning: {
       label: 'Planning',
