@@ -92,12 +92,16 @@ a { color: inherit; }
 .hero .who { font-family: var(--mono); font-size: var(--fs-s); color: var(--sub); letter-spacing: .02em; margin: 0 0 18px; }
 .hero .authors { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.55; color: var(--ink); margin: 0 0 10px; text-wrap: balance; }
 .hero .authors sup, .hero .affil sup { font-size: .65em; line-height: 0; }
+.hero .authors a { text-decoration: none; border-bottom: 1px solid var(--g300); }
+.hero .authors a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .hero .affil { font-family: var(--mono); font-size: 15px; color: var(--sub); letter-spacing: .02em; margin: 0 0 20px; }
 .nw { white-space: nowrap; }
 .hero .logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 44px; width: fit-content; max-width: 100%; margin: 0 auto 24px; padding: 12px 22px; border-radius: 14px; box-sizing: border-box; }
 .hero .logos img { display: block; width: auto; max-width: 100%; }
 .hero .logos .logo-cmu { height: clamp(26px, 4.2vw, 40px); }
 .hero .logos .logo-tri { height: clamp(42px, 6.4vw, 62px); }
+.hero .logos .logo-item { display: inline-flex; align-items: flex-start; gap: 6px; }   /* each logo carries its affiliation number */
+.hero .logos .logo-num { font-family: var(--mono); font-size: 15px; line-height: 1; color: #555; }
 /* the logos keep their official colours, so give them a light backing at night */
 :root[data-theme="dark"] .hero .logos { background: #f3f4f6; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero .logos { background: #f3f4f6; } }
@@ -408,9 +412,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <section class="hero">
     <div class="wrap">
       <h1>Particle Motion World Models</h1>
-      <p class="authors"><span class="nw">Robert Ren<sup>1,*</sup></span>, <span class="nw">Matthew Bronars<sup>1,*</sup></span>, <span class="nw">He Zhu<sup>1</sup></span>, <span class="nw">Yikai Tang<sup>1</sup></span>, <span class="nw">Jianing Zhang<sup>1</sup></span>,<br><span class="nw">Sergey Zakharov<sup>2</sup></span>, <span class="nw">Pavel Tokmakov<sup>2</sup></span>, <span class="nw">Katerina Fragkiadaki<sup>1</sup></span></p>
-      <p class="affil"><span class="nw"><sup>1</sup>Carnegie Mellon University</span>&nbsp;&middot; <span class="nw"><sup>2</sup>Toyota Research Institute</span><br><span class="nw"><sup>*</sup>Equal contribution, ordered by coin flip</span></p>
-      <div class="logos"><img class="logo-cmu" src="media/logo-cmu.png" alt="Carnegie Mellon University" width="1599" height="156"><img class="logo-tri" src="media/logo-tri.png" alt="Toyota Research Institute" width="1200" height="317"></div>
+      <p class="authors"><span class="nw"><a href="https://robertren1122.github.io/" target="_blank" rel="noopener">Robert Ren</a><sup>1,*</sup></span>, <span class="nw"><a href="https://mbronars.github.io/" target="_blank" rel="noopener">Matthew Bronars</a><sup>1,*</sup></span>, <span class="nw"><a href="https://ada4321.github.io/" target="_blank" rel="noopener">He Zhu</a><sup>1</sup></span>, <span class="nw"><a href="https://wintermelooooo.github.io/" target="_blank" rel="noopener">Yikai Tang</a><sup>1</sup></span>, <span class="nw"><a href="https://jianingnz.github.io/" target="_blank" rel="noopener">Jianing Zhang</a><sup>1</sup></span>,<br><span class="nw"><a href="https://zakharos.github.io/" target="_blank" rel="noopener">Sergey Zakharov</a><sup>2</sup></span>, <span class="nw"><a href="https://pvtokmakov.github.io/home/" target="_blank" rel="noopener">Pavel Tokmakov</a><sup>2</sup></span>, <span class="nw"><a href="https://www.cs.cmu.edu/~katef/" target="_blank" rel="noopener">Katerina Fragkiadaki</a><sup>1</sup></span></p>
+      <div class="logos"><span class="logo-item"><sup class="logo-num">1</sup><img class="logo-cmu" src="media/logo-cmu.png" alt="Carnegie Mellon University" width="1599" height="156"></span><span class="logo-item"><sup class="logo-num">2</sup><img class="logo-tri" src="media/logo-tri.png" alt="Toyota Research Institute" width="1200" height="317"></span></div>
+      <p class="affil"><sup>*</sup>Equal contribution, ordered by coin flip</p>
       <div class="links"><a class="pill" href="paper.pdf">Paper</a><a class="pill" href="https://huggingface.co/spaces/robertren1/gpwm-simulation" target="_blank" rel="noopener">Demo</a><span class="pill off">arXiv &middot; coming soon</span><span class="pill off">Code &middot; coming soon</span></div>
     </div>
   </section>
