@@ -409,7 +409,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap">
       <h1>Particle Motion World Models</h1>
       <p class="authors"><span class="nw">Robert Ren<sup>1,*</sup></span>, <span class="nw">Matthew Bronars<sup>1,*</sup></span>, <span class="nw">He Zhu<sup>1</sup></span>, <span class="nw">Yikai Tang<sup>1</sup></span>, <span class="nw">Jianing Zhang<sup>1</sup></span>,<br><span class="nw">Sergey Zakharov<sup>2</sup></span>, <span class="nw">Pavel Tokmakov<sup>2</sup></span>, <span class="nw">Katerina Fragkiadaki<sup>1</sup></span></p>
-      <p class="affil"><span class="nw"><sup>1</sup>Carnegie Mellon University</span>&nbsp;&middot; <span class="nw"><sup>2</sup>Toyota Research Institute</span>&nbsp;&middot; <span class="nw"><sup>*</sup>Equal contribution, ordered by coin flip</span></p>
+      <p class="affil"><span class="nw"><sup>1</sup>Carnegie Mellon University</span>&nbsp;&middot; <span class="nw"><sup>2</sup>Toyota Research Institute</span><br><span class="nw"><sup>*</sup>Equal contribution, ordered by coin flip</span></p>
       <div class="logos"><img class="logo-cmu" src="media/logo-cmu.png" alt="Carnegie Mellon University" width="1599" height="156"><img class="logo-tri" src="media/logo-tri.png" alt="Toyota Research Institute" width="1200" height="317"></div>
       <div class="links"><a class="pill" href="paper.pdf">Paper</a><a class="pill" href="https://huggingface.co/spaces/robertren1/gpwm-simulation" target="_blank" rel="noopener">Demo</a><span class="pill off">arXiv &middot; coming soon</span><span class="pill off">Code &middot; coming soon</span></div>
     </div>
@@ -473,7 +473,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="pd-stage" data-scene="planning" aria-label="Guided generation on a pick-and-place task over a barrier: a block diagram of the reward's gradient flowing back to the starting noise, the loss falling over the updates of the noise, the imagined motion after each update, then the chosen plan and its execution in simulation"></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="planning" role="img" aria-label="A robot arm in simulation executes three plans for the same milk carton: an unguided sample, a plan guided to a target, and a plan guided to the target over a wall."></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="plan_vs" data-title="Picking against the baselines" role="img" aria-label="Picking a milk carton and a soda can: the initial configuration, then the executed end state of GPWM with guidance, GPWM without guidance and PointWorld, each with the object&rsquo;s path and the target."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="plan_push" data-title="Pushing against the baselines" role="img" aria-label="Two block-pushing tasks, each planned by GPWM with guidance, PointWorld and GNS and executed open-loop in simulation: only GPWM pushes the block onto the target."></div>
+    <div class="pd-stage" data-scene="rwvideo" data-group="plan_push" data-title="Pushing: noise-space versus action-space planning" role="img" aria-label="Three block-pushing tasks, each planned four ways and executed open-loop in simulation: LNO and Noise CEM search GPWM&rsquo;s latent noise, and Action CEM searches actions with GPWM and with PointWorld. The noise-space plans push the block toward the target; the action-space plans leave it where it is."></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="plan_pile" data-title="Pile manipulation against the baselines" role="img" aria-label="Two pile-manipulation tasks, each planned by GPWM with guidance, PointWorld and GNS: for each, the model&rsquo;s prediction above the simulated outcome of pushing a granular pile toward a target."></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="planning_more" data-title="More examples" role="img" aria-label="Nine more guided plans executed by the robot arm, each carrying an object to its own target: an oil bottle, a peanut butter jar, two wine glasses, a ketchup bottle, a water bottle, a lemon and two milk cartons."></div>
   </section>
@@ -549,7 +549,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <footer><div class="wrap"><span>GPWM &middot; Carnegie Mellon University &amp; Toyota Research Institute</span><span>Page design inspired by paradigm.xyz</span></div></footer>
 
-<script>window.PD = { DATA_V: {"freefall":"3c8d3ed8ea","dragging":"c7ddd8e5b9","folding":"b781cb9c06","pushing":"9b10998890","pickplace":"2850261622","dexterous":"b3438e744b","longfold":"2c30717604","guided":"2c281774a2","dataset":"74d120d0e9","rwvideo":"f81912f398","rw_desk":"8593fcc54d","rw_drop":"6c143dc5b9","compare":"d9462cc7de","cmp_ff1":"3440fcbbe4","cmp_ff2":"6bb4f30e4d","cmp_ff3":"3e4afdbe5e","cmp_ff4":"480b7b9d33","cmp_ff5":"6973addc15","cmp_drag1":"bc8702b76f","cmp_drag2":"e0104be2e0","cmp_drag3":"13981dcabc","cmp_fold1":"5c4102499c","cmp_fold2":"ff547d059d","cmp_fold3":"36daf8a9df","cmp_fold4":"455eea7afe","cmp_push1":"987767f812","cmp_push2":"599d4c4e46","cmp_push3":"e55601b4e8","cmp_push4":"a77b35e24c","cmp_pick1":"6ca775bcf1","cmp_pick2":"d586ecf8dd","cmp_pick3":"8a76ac1998","cmp_dex1":"8c24905cc5"} };</script>
+<script>window.PD = { DATA_V: {"freefall":"3c8d3ed8ea","dragging":"c7ddd8e5b9","folding":"b781cb9c06","pushing":"9b10998890","pickplace":"2850261622","dexterous":"b3438e744b","longfold":"2c30717604","guided":"2c281774a2","dataset":"74d120d0e9","rwvideo":"9323c20599","rw_desk":"8593fcc54d","rw_drop":"6c143dc5b9","compare":"d9462cc7de","cmp_ff1":"3440fcbbe4","cmp_ff2":"6bb4f30e4d","cmp_ff3":"3e4afdbe5e","cmp_ff4":"480b7b9d33","cmp_ff5":"6973addc15","cmp_drag1":"bc8702b76f","cmp_drag2":"e0104be2e0","cmp_drag3":"13981dcabc","cmp_fold1":"5c4102499c","cmp_fold2":"ff547d059d","cmp_fold3":"36daf8a9df","cmp_fold4":"455eea7afe","cmp_push1":"987767f812","cmp_push2":"599d4c4e46","cmp_push3":"e55601b4e8","cmp_push4":"a77b35e24c","cmp_pick1":"6ca775bcf1","cmp_pick2":"d586ecf8dd","cmp_pick3":"8a76ac1998","cmp_dex1":"8c24905cc5"} };</script>
 <script>
 /* GPWM paper site: core. The page is a scroll of sections; each interactive figure is a "stage" (its own canvas, overlay
    and controls) that runs only while it is on screen. Two kinds of stage:
@@ -3523,7 +3523,7 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
   const PD = window.PD;
   const INTRO = 1.2, FADE = 0.5, HOLD = 1.2, DRIFT = 0.25;
   const ROWS = { photo: [1, 1], push: [4, 2], materials: [4, 2], generated: [3, 2], planning: [3, 1], plan_vs: [4, 2], planning_more: [3, 2],
-    plan_push: [3, 3], plan_pile: [2, 1] };   // tiles per row: desktop, phone
+    plan_push: [4, 2], plan_pile: [2, 1] };   // tiles per row: desktop, phone
 
   PD.scene('rwvideo', {
     create(api) {
