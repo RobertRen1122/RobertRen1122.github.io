@@ -341,6 +341,50 @@ a { color: inherit; }
 .abstract p { margin: 0 0 14px; }
 .abstract p:last-child { margin-bottom: 0; }
 .abstract b { font-weight: 600; }
+.abstract .abs-lead { font-size: 26px; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 18px; text-wrap: balance; }
+
+/* ---- intro video, its chapters, and the headline numbers ---- */
+:root { --grad-a: #0284C7; --grad-b: #9333EA; }                                   /* sky to purple, as the GPWM wordmark in the paper */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grad-a: #38BDF8; --grad-b: #C084FC; } }
+:root[data-theme="dark"] { --grad-a: #38BDF8; --grad-b: #C084FC; }
+.gw { background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (forced-colors: active) { .gw { background: none; color: CanvasText; } }
+.teaser { padding-block: 12px 4px; }
+.teaser .wrap { max-width: 1088px; }                                                /* a 1040px video */
+.tz-frame { aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #0e0f11; }
+.tz-frame video { display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+.tz-bar { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+.tz-btn { all: unset; box-sizing: border-box; flex: none; cursor: pointer; width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--g200); color: var(--ink); }
+.tz-btn:hover { background: var(--g300); }
+.tz-btn:focus-visible, .tz-ch:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.tz-btn svg { width: 14px; height: 14px; fill: currentColor; }
+.tz-btn .i-pause, .tz-btn.playing .i-play { display: none; }
+.tz-btn.playing .i-pause { display: inline; }
+.tz-chapters { flex: 1; min-width: 0; display: flex; gap: 6px; margin: 0; padding: 2px; list-style: none; overflow-x: auto; scrollbar-width: none; }
+.tz-chapters::-webkit-scrollbar { display: none; }
+.tz-chapters li { flex: 1 1 0; min-width: max-content; }                           /* equal widths, never narrower than the label */
+.tz-ch { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer; padding: 8px 0 6px; font-family: var(--mono);
+  font-size: var(--fs-s); line-height: var(--lh-s); letter-spacing: .02em; color: var(--sub); white-space: nowrap; }
+.tz-ch:hover, .tz-ch[aria-current] { color: var(--ink); }
+.tz-track { display: block; height: 2px; margin-bottom: 8px; border-radius: 1px; background: var(--g300); overflow: hidden; }
+.tz-fill { display: block; height: 100%; transform: scaleX(0); transform-origin: 0 50%; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 48px 0 0; padding: 0; list-style: none; }
+.stats li { padding: 2px 16px; border-left: 1px solid var(--g300); text-align: center; }
+.stats li:first-child { border-left: 0; }
+.stat-n { display: inline-block; font-size: clamp(40px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.03em; }
+.stat-l { display: block; margin-top: 10px; font-family: var(--mono); font-size: var(--fs-s); line-height: var(--lh-s); letter-spacing: .02em;
+  color: var(--sub); text-wrap: balance; }
+@media (max-width: 760px) {
+  .tz-frame { border-radius: 10px; }
+  .tz-bar { gap: 10px; }
+  .tz-ch { padding-right: 12px; }                                                   /* chips shrink to their labels here, so space them */
+  .stats { grid-template-columns: repeat(2, 1fr); row-gap: 28px; margin-top: 36px; }
+  .stats li { padding-inline: 10px; }
+  .stat-l { font-size: var(--fs-xs); line-height: var(--lh-xs); }
+  .stats li:nth-child(3) { border-left: 0; }
+  .abstract .abs-lead { font-size: 21px; }
+}
 .placeholder { margin-top: 28px; border: 1px dashed var(--g500); padding: 40px 28px; font-family: var(--mono); font-size: var(--fs-s); color: var(--sub); text-align: center; }
 .bib { position: relative; margin-top: 24px; }
 .bib pre { margin: 0; padding: 18px 20px; background: var(--card); border: 1px solid var(--g300); border-radius: 10px; font-family: var(--mono); font-size: 12px; line-height: 1.6; overflow-x: auto; }
@@ -419,11 +463,90 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     </div>
   </section>
 
+  <section class="teaser" aria-label="Introduction video">
+    <div class="wrap">
+      <div class="tz-frame">
+        <video controls muted loop playsinline preload="metadata" poster="media/intro_poster.6ebcd13ee2.jpg" aria-label="A one-minute introduction to GPWM, with on-screen captions and no sound">
+          <source src="media/intro_720.6f8f5070ac.mp4" type="video/mp4" media="(max-width: 760px)">
+          <source src="media/intro.d40ff978da.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="tz-bar">
+        <button class="tz-btn" type="button" data-tz-play aria-label="Play video"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.5v11l9-5.5z"/><path class="i-pause" d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"/></svg></button>
+        <ol class="tz-chapters" aria-label="Chapters">
+          <li><button class="tz-ch" type="button" data-t="0"><span class="tz-track"><span class="tz-fill"></span></span>Intro</button></li>
+          <li><button class="tz-ch" type="button" data-t="8.6"><span class="tz-track"><span class="tz-fill"></span></span>Six domains</button></li>
+          <li><button class="tz-ch" type="button" data-t="28.4"><span class="tz-track"><span class="tz-fill"></span></span>One model</button></li>
+          <li><button class="tz-ch" type="button" data-t="37.2"><span class="tz-track"><span class="tz-fill"></span></span>From an image</button></li>
+          <li><button class="tz-ch" type="button" data-t="46.2"><span class="tz-track"><span class="tz-fill"></span></span>Robots</button></li>
+          <li><button class="tz-ch" type="button" data-t="50.6"><span class="tz-track"><span class="tz-fill"></span></span>Planning</button></li>
+          <li><button class="tz-ch" type="button" data-t="57.8"><span class="tz-track"><span class="tz-fill"></span></span>How it works</button></li>
+        </ol>
+        <button class="tz-btn" type="button" data-tz-full aria-label="Full screen"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4v1.5H3.5V6zM10 2h4v4h-1.5V3.5H10zM14 10v4h-4v-1.5h2.5V10zM6 14H2v-4h1.5v2.5H6z"/></svg></button>
+      </div>
+      <ul class="stats">
+        <li><span class="stat-n gw">25.5M</span><span class="stat-l">frames in the ParticleWorlds corpus</span></li>
+        <li><span class="stat-n gw">6</span><span class="stat-l">physical domains, from free fall to folding</span></li>
+        <li><span class="stat-n gw">31%</span><span class="stat-l">lower error than the best prior baseline, on average</span></li>
+        <li><span class="stat-n gw">55&times;</span><span class="stat-l">the 16-frame window, rolled out to 898 frames</span></li>
+      </ul>
+    </div>
+    <script>
+    (function () {   /* the intro video: plays muted while on screen; chapter buttons; full screen */
+      'use strict';
+      const box = document.currentScript.closest('.teaser');
+      const v = box.querySelector('video'), list = box.querySelector('.tz-chapters');
+      const playBtn = box.querySelector('[data-tz-play]'), fullBtn = box.querySelector('[data-tz-full]');
+      const chs = [...box.querySelectorAll('.tz-ch')], starts = chs.map(b => +b.dataset.t), fills = chs.map(b => b.querySelector('.tz-fill'));
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const saveData = !!(navigator.connection && navigator.connection.saveData);
+      let userPaused = reduced || saveData, cur = -1, raf = 0;
+      v.controls = false;   // native controls only without script, and in full screen
+      const dur = () => (isFinite(v.duration) && v.duration > 0 ? v.duration : 71.5);
+      function paint() {
+        const t = v.currentTime;
+        let i = 0; while (i + 1 < starts.length && t >= starts[i + 1]) i++;
+        fills.forEach((f, k) => {
+          const a = starts[k], b = k + 1 < starts.length ? starts[k + 1] : dur();
+          f.style.transform = 'scaleX(' + (k < i ? 1 : k > i ? 0 : Math.min(1, Math.max(0, (t - a) / (b - a)))) + ')';
+        });
+        if (i === cur) return;
+        cur = i;
+        chs.forEach((b, k) => { if (k === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+        const lr = list.getBoundingClientRect(), cr = chs[i].parentElement.getBoundingClientRect();   // keep it in view when the row scrolls
+        if (cr.left < lr.left || cr.right > lr.right) list.scrollBy({ left: cr.left - lr.left - 8, behavior: reduced ? 'auto' : 'smooth' });
+      }
+      function tick() { paint(); raf = v.paused ? 0 : requestAnimationFrame(tick); }
+      function sync() {
+        const on = !v.paused;
+        playBtn.classList.toggle('playing', on);
+        playBtn.setAttribute('aria-label', on ? 'Pause video' : 'Play video');
+        if (on && !raf) raf = requestAnimationFrame(tick);
+        paint();
+      }
+      const play = () => { const p = v.play(); if (p) p.catch(() => {}); };
+      ['play', 'pause', 'seeked', 'loadedmetadata'].forEach(e => v.addEventListener(e, sync));
+      playBtn.addEventListener('click', () => { if (v.paused) { userPaused = false; play(); } else { userPaused = true; v.pause(); } });
+      v.addEventListener('click', () => { if (!document.fullscreenElement) playBtn.click(); });
+      chs.forEach((b, k) => b.addEventListener('click', () => { v.currentTime = starts[k]; userPaused = false; play(); paint(); }));
+      fullBtn.addEventListener('click', () => {
+        if (v.requestFullscreen) v.requestFullscreen().catch(() => {}); else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+      });
+      document.addEventListener('fullscreenchange', () => { v.controls = document.fullscreenElement === v; });
+      new IntersectionObserver(es => {   // play while on screen, unless paused by the visitor or reduced motion is on
+        if (es[0].isIntersecting) { if (!userPaused) play(); } else if (!v.paused) v.pause();
+      }, { threshold: 0.35 }).observe(v);
+      sync();
+    })();
+    </script>
+  </section>
+
   <section class="sec" id="abstract">
     <div class="wrap abs-center">
       <p class="eyebrow-s">Abstract</p>
         <div class="abstract">
-          <p>We introduce GPWM, a <b>G</b>enerative <b>P</b>article <b>W</b>orld <b>M</b>odel that <b>predicts how 3D scenes evolve by generating the motion of particles and rigid bodies over time</b>. Unlike video world models that generate scene appearance, GPWM operates directly in 3D physical space. A single representation and architecture cover rigid, deformable, cloth, and granular materials, in both passive physics and robotic interaction. GPWM is an <b>object-aware multi-resolution transformer</b> that combines <b>flow matching with diffusion forcing</b> to generate coherent physical trajectories far beyond its training horizon.</p>
+          <p class="abs-lead">We introduce <span class="gw">GPWM</span>, a <b>G</b>enerative <b>P</b>article <b>W</b>orld <b>M</b>odel that predicts how 3D scenes evolve by generating the motion of particles and rigid bodies over time.</p>
+          <p>Unlike video world models that generate scene appearance, GPWM operates directly in 3D physical space. A single representation and architecture cover rigid, deformable, cloth, and granular materials, in both passive physics and robotic interaction. GPWM is an <b>object-aware multi-resolution transformer</b> that combines <b>flow matching with diffusion forcing</b> to generate coherent physical trajectories far beyond its training horizon.</p>
           <p>We train and evaluate GPWM on ParticleWorlds, a 25.5-million-frame corpus spanning diverse geometries, materials, interactions, and robot embodiments. GPWM <b>outperforms the best prior learned-dynamics baseline in each of six physical domains</b>, reducing prediction error <b>by 31% on average</b>. Breaking from the domain-specific setting of prior methods, <b>a single <i>Unified</i> GPWM</b> models these heterogeneous regimes with one set of weights, largely outperforming per-domain baselines and even surpassing our own specialist models in two domains. GPWM further generalizes to unseen geometries, physical properties, object counts, and rollout horizons.</p>
           <p>Beyond prediction, GPWM enables <b>contact-rich planning</b> by learning a generative prior over joint actuator&ndash;object motion. Instead of searching over unconstrained actions, planning searches the model&rsquo;s latent noise for interactions that achieve a desired object-space goal. With the same world model, <b>noise-space planning substantially outperforms action-space search</b> on pushing and picking, where complex contact sequences are hard to discover. Executed open-loop in simulation, the resulting plans achieve goal-directed manipulation without reference action trajectories or goal-specific policies.</p>
         </div>
