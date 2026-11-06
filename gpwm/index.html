@@ -502,21 +502,22 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <section class="teaser" aria-label="Introduction video">
     <div class="wrap">
       <div class="tz-frame">
-        <video controls muted loop playsinline preload="metadata" poster="media/intro_poster.6ebcd13ee2.jpg" aria-label="A one-minute introduction to GPWM, with on-screen captions and no sound">
-          <source src="media/intro_720.6f8f5070ac.mp4" type="video/mp4" media="(max-width: 760px)">
-          <source src="media/intro.d40ff978da.mp4" type="video/mp4">
+        <video controls muted loop playsinline preload="metadata" poster="media/intro_poster.c97bba0d50.jpg" aria-label="A short introduction to GPWM (2 min 20 s), with on-screen captions and no sound">
+          <source src="media/intro_720.98a0b3516c.mp4" type="video/mp4" media="(max-width: 760px)">
+          <source src="media/intro.1b411b264f.mp4" type="video/mp4">
         </video>
       </div>
       <div class="tz-bar">
         <button class="tz-btn" type="button" data-tz-play aria-label="Play video"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="i-play" d="M4.5 2.5v11l9-5.5z"/><path class="i-pause" d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"/></svg></button>
         <ol class="tz-chapters" aria-label="Chapters">
           <li><button class="tz-ch" type="button" data-t="0"><span class="tz-track"><span class="tz-fill"></span></span>Intro</button></li>
-          <li><button class="tz-ch" type="button" data-t="8.6"><span class="tz-track"><span class="tz-fill"></span></span>Six domains</button></li>
-          <li><button class="tz-ch" type="button" data-t="28.4"><span class="tz-track"><span class="tz-fill"></span></span>One model</button></li>
-          <li><button class="tz-ch" type="button" data-t="37.2"><span class="tz-track"><span class="tz-fill"></span></span>From an image</button></li>
-          <li><button class="tz-ch" type="button" data-t="46.2"><span class="tz-track"><span class="tz-fill"></span></span>Robots</button></li>
-          <li><button class="tz-ch" type="button" data-t="50.6"><span class="tz-track"><span class="tz-fill"></span></span>Planning</button></li>
-          <li><button class="tz-ch" type="button" data-t="57.8"><span class="tz-track"><span class="tz-fill"></span></span>How it works</button></li>
+          <li><button class="tz-ch" type="button" data-t="7"><span class="tz-track"><span class="tz-fill"></span></span>Dynamics</button></li>
+          <li><button class="tz-ch" type="button" data-t="16.9"><span class="tz-track"><span class="tz-fill"></span></span>Robots</button></li>
+          <li><button class="tz-ch" type="button" data-t="28.2"><span class="tz-track"><span class="tz-fill"></span></span>From an image</button></li>
+          <li><button class="tz-ch" type="button" data-t="34.9"><span class="tz-track"><span class="tz-fill"></span></span>Folding</button></li>
+          <li><button class="tz-ch" type="button" data-t="50.4"><span class="tz-track"><span class="tz-fill"></span></span>How it works</button></li>
+          <li><button class="tz-ch" type="button" data-t="83.6"><span class="tz-track"><span class="tz-fill"></span></span>Materials</button></li>
+          <li><button class="tz-ch" type="button" data-t="99.1"><span class="tz-track"><span class="tz-fill"></span></span>Planning</button></li>
         </ol>
         <button class="tz-btn" type="button" data-tz-full aria-label="Full screen"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4v1.5H3.5V6zM10 2h4v4h-1.5V3.5H10zM14 10v4h-4v-1.5h2.5V10zM6 14H2v-4h1.5v2.5H6z"/></svg></button>
       </div>
@@ -538,7 +539,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       const saveData = !!(navigator.connection && navigator.connection.saveData);
       let userPaused = reduced || saveData, cur = -1, raf = 0;
       v.controls = false;   // native controls only without script, and in full screen
-      const dur = () => (isFinite(v.duration) && v.duration > 0 ? v.duration : 71.5);
+      const dur = () => (isFinite(v.duration) && v.duration > 0 ? v.duration : 139.9);
       function paint() {
         const t = v.currentTime;
         let i = 0; while (i + 1 < starts.length && t >= starts[i + 1]) i++;
