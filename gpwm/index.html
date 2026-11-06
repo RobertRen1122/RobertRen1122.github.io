@@ -126,6 +126,18 @@ a { color: inherit; }
 .pd-scrub { width: 200px; height: 14px; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .pd-stage.scene--dataset { height: 1300px; }   /* the scene sets its own height */
 .scene--dataset .pd-art .dsname { position: absolute; font-family: var(--serif); font-size: 22px; line-height: 26px; color: var(--ink); white-space: nowrap; }
+.scene--dataset .ds-keys { position: absolute; display: flex; flex-wrap: wrap; gap: 6px 20px; }                     /* the bar's legend */
+.scene--dataset .ds-key { all: unset; cursor: default; display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-xs); line-height: 16px; color: var(--sub); white-space: nowrap; }
+.scene--dataset .ds-key i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.scene--dataset .ds-key b { font-weight: 500; color: var(--ink); }
+.scene--dataset .ds-key.on { color: var(--ink); }
+.scene--dataset .ds-key:focus-visible, .scene--dataset .ds-dot:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.scene--dataset .ds-hit { position: absolute; }
+.scene--dataset .ds-dots { position: absolute; display: flex; }
+.scene--dataset .ds-dot { all: unset; cursor: pointer; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; }
+.scene--dataset .ds-dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--g400); }
+.scene--dataset .ds-dot.on::before { background: var(--ink); }
+@media (max-width: 759px) { .scene--dataset .pd-art .dsname { font-size: 18px; line-height: 22px; } }
 .pd-stage.scene--realworld { height: 780px; }                                    /* the scene sets its own height */
 .pd-stage.scene--compare { height: 860px; }                                        /* the scene sets its own height */
 .scene--compare .cmp-bar { position: absolute; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -161,6 +173,10 @@ a { color: inherit; }
 .scene--rwvideo .rwv-msg { position: absolute; display: grid; place-items: center; font-family: var(--mono); font-size: var(--fs-s);
   color: var(--sub); background: var(--card); border-radius: 10px; pointer-events: none; text-align: center; padding: 24px; box-sizing: border-box; }
 .scene--rwvideo .rwv-msg[hidden] { display: none; }
+.scene--rwvideo .rwv-bar { position: absolute; display: flex; flex-wrap: wrap; gap: 6px; }        /* the planning player's buttons */
+.scene--rwvideo .rwv-eps { width: auto; }
+.scene--rwvideo .rwv-eps .bars-sw { font-size: var(--fs-xs); padding: 3px 10px; }
+.scene--rwvideo .rwv-note { position: absolute; pointer-events: none; font-family: var(--mono); font-size: var(--fs-xs); line-height: 16px; color: var(--sub); }
 .scene--realworld .rw-msg { position: absolute; display: grid; place-items: center; font-family: var(--mono); font-size: var(--fs-s);
   color: var(--sub); background: var(--card); border-radius: 10px; pointer-events: none; text-align: center; padding: 24px; box-sizing: border-box; }
 .scene--realworld .rw-msg[hidden], .scene--realworld .rw-hint[hidden], .scene--realworld .rw-tag[hidden] { display: none; }
@@ -335,6 +351,15 @@ a { color: inherit; }
 .bars-sd { stroke: var(--ink); stroke-width: 1; opacity: .55; }
 .bars-cap { margin: 10px 0 0; font-family: var(--serif); font-style: italic; font-size: 15px; line-height: 1.5; color: var(--sub); }
 .bars-more .bars-cap { margin-top: 6px; }
+.bars.grid { max-width: none; }                                                     /* every result at once, two cards a row */
+.bars-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.bars-grid .bars-card { margin-top: 0; }
+.bars-grid .bars-metric { display: block; margin-top: 2px; font-size: 15px; }
+.bars-grid .bars-dot { display: none; }
+.bars-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sec h2.res-next { margin-top: 64px; }                                            /* the second results heading */
+@media (max-width: 1100px) { .bars-grid.cols-3 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .bars-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---- page blocks ---- */
 .abstract { font-size: 19px; line-height: 1.62; max-width: 70ch; margin: 0; text-wrap: pretty; }
@@ -432,6 +457,19 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .demo-embed iframe { display: block; width: 100%; height: min(820px, 85vh); border: 0; background: #fff; }
 .demo-note { font-family: var(--mono); font-size: var(--fs-s); line-height: var(--lh-s); color: var(--sub); margin: 12px 0 0; }
 .demo-note a { color: inherit; }
+.nums-h { margin-top: 56px; }                                                     /* a sub-heading inside a section */
+.nums-h + .lede { margin-top: 8px; }
+.try-row { display: grid; grid-template-columns: minmax(0, 480px) minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 64px; }   /* the two ways to try it */
+.try-row .lede { margin-top: 8px; }
+.try-row .pd-stage { margin-top: 18px; border: 0; }
+.try-row .demo-embed { margin-top: 22px; }
+.demo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.demo-actions .pill { font-size: 15px; line-height: 19px; padding: 9px 18px; border-radius: 20px; }
+.demo-actions .pill[hidden] { display: none; }
+.demo-live { margin-top: 24px; border: 1px solid var(--g300); border-radius: 14px; overflow: hidden; }
+.demo-live[hidden] { display: none; }
+.demo-live iframe { display: block; width: 100%; height: min(820px, 85vh); border: 0; background: #fff; }
+@media (max-width: 900px) { .try-row { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
 </style>
 </head>
 <body>
@@ -445,8 +483,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <a href="#comparison">Comparison</a>
     <a href="#planning">Planning</a>
     <a href="#real-world">Real world</a>
-    <a href="#demo">Demo</a>
-    <a href="#results">Results</a>
     <a href="#bibtex">BibTeX</a>
   </nav>
   <button class="pill" type="button" data-theme-toggle aria-label="Switch colour theme"><span data-theme-label>night mode</span></button>
@@ -570,7 +606,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <h2>ParticleWorlds: 25.5 million frames in six domains</h2>
       <p class="lede">Simulated trajectories spanning rigid objects, elastic and elastoplastic solids, granular materials, and cloth, covering passive dynamics and robotic manipulation with rods, parallel-jaw grippers, and articulated hands.</p>
     </div>
-    <div class="pd-stage" data-scene="dataset" role="img" aria-label="Six rows, one per domain of the dataset: its materials, actuation and number of training frames, and four looping recordings from it."></div>
+    <div class="pd-stage" data-scene="dataset" role="group" aria-label="The dataset&rsquo;s training frames as one bar split by domain, then a card per domain with its materials, actuation and number of training frames, playing four recordings from it one after another."></div>
   </section>
 
   <section class="sec" id="streaming">
@@ -589,6 +625,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <p class="lede">GNS, a graph-based particle simulator; PGND, a hybrid particle&ndash;grid model; PointWorld, a point-cloud world model; and PhysCtrl, a generative model of physical dynamics. All methods use the same evaluation trajectories and available actuator conditioning.</p>
     </div>
     <div class="pd-stage" data-scene="compare" role="img" aria-label="Side-by-side 3D views of test clips: the simulator's recording, GPWM's prediction and the baselines' predictions, one row of buttons per collection and clip."></div>
+    <div class="wrap">
+      <h3 class="res-h nums-h">Prediction error, in numbers</h3>
+      <div class="bars grid" data-bars="prediction" data-layout="grid"></div>
+    </div>
   </section>
 
   <section class="sec" id="planning">
@@ -599,10 +639,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     </div>
     <div class="pd-stage" data-scene="planning" aria-label="Guided generation on a pick-and-place task over a barrier: a block diagram of the reward's gradient flowing back to the starting noise, the loss falling over the updates of the noise, the imagined motion after each update, then the chosen plan and its execution in simulation"></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="planning" role="img" aria-label="A robot arm in simulation executes three plans for the same milk carton: an unguided sample, a plan guided to a target, and a plan guided to the target over a wall."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="plan_vs" data-title="Picking: noise-space versus action-space planning" role="img" aria-label="Picking a pasta box and a soda can: the initial configuration, then the executed end state of four plans. LNO and Noise CEM in GPWM&rsquo;s latent noise grasp and lift each object toward the target; Action CEM with GPWM or PointWorld never establishes a grasp."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="plan_push" data-title="Pushing: noise-space versus action-space planning" role="img" aria-label="Three block-pushing tasks, each planned four ways and executed open-loop in simulation: LNO and Noise CEM search GPWM&rsquo;s latent noise, and Action CEM searches actions with GPWM and with PointWorld. The noise-space plans push the block toward the target; the action-space plans leave it where it is."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="plan_pile" data-title="Pile manipulation: each plan as predicted and as executed" role="img" aria-label="Two pile-manipulation tasks, each planned four ways: for every plan, the world model&rsquo;s prediction next to the outcome of executing it in simulation."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="planning_more" data-title="More examples" role="img" aria-label="Nine more guided plans executed by the robot arm, each carrying an object to its own target: an oil bottle, a peanut butter jar, two wine glasses, a ketchup bottle, a water bottle, a lemon and two milk cartons."></div>
+    <div class="pd-stage" data-scene="rwvideo" data-switch="planning" role="group" aria-label="Planned and executed manipulation, one task and example at a time: buttons choose the task (pushing, pile manipulation, picking, or more guided plans) and the example; each example shows the planners side by side. LNO and Noise CEM search GPWM&rsquo;s latent noise; Action CEM searches actions with GPWM or PointWorld as the world model."></div>
+    <div class="wrap">
+      <h3 class="res-h nums-h">Task progress, in numbers</h3>
+      <div class="bars grid" data-bars="planning" data-layout="grid" data-cols="3"></div>
+    </div>
   </section>
 
   <section class="sec" id="real-world">
@@ -611,53 +652,42 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <h2>Predictions from a single image</h2>
       <p class="lede">Previously unseen object geometries reconstructed from single RGB images, with their dynamics predicted by the Free Fall specialist. The resulting trajectories are rendered back into the scene.</p>
     </div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="photo" role="img" aria-label="A desk photo: four objects are lifted into a tower and let go, and the predicted fall plays from the photo's viewpoint."></div>
-    <div class="pd-stage" data-scene="rwvideo" data-group="push" role="img" aria-label="The same ball resting on a pepper, four times: no push, pushed left, toward the camera and away, each with its predicted future."></div>
+    <div class="pd-stage" data-scene="rwvideo" data-group="photo,push" role="img" aria-label="A desk photo, five times: four objects lifted into a tower and let go, then a ball resting on a pepper with no push, pushed left, toward the camera and away, each with its predicted future."></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="materials" role="img" aria-label="A ball dropped onto a sand castle made of dry and of damp sand, and a ball of sand let go, wet and dry."></div>
     <div class="pd-stage" data-scene="rwvideo" data-group="generated" role="img" aria-label="Six generated or stylized images, each with a predicted drop: a dorm desk, a farmhouse, a living room, a candy shop, a Mars habitat and a 1970s film photo."></div>
-  </section>
-
-  <section class="sec" id="try-it">
-    <div class="wrap">
-      <p class="eyebrow-s">Try it</p>
-      <h2>Drop a ball anywhere on the desk</h2>
-      <p class="lede">Click the table to drop an elastic or a sand ball.</p>
-    </div>
-    <div class="pd-stage" data-scene="realworld" data-only="drop" role="img" aria-label="An interactive 3D view of the desk photo: click the table to drop an elastic or a sand ball there and watch the predicted fall."></div>
-  </section>
-
-  <section class="sec" id="demo">
-    <div class="wrap">
-      <p class="eyebrow-s">Demo</p>
-      <h2>Try the full model</h2>
-      <p class="lede">Drop and drag objects reconstructed from photos, and GPWM predicts the next two seconds. The demo runs on Hugging Face and may take a moment to start.</p>
-      <div class="demo-embed" data-src="https://robertren1-gpwm-simulation.hf.space/?__theme=light">
-        <img src="media/demo_poster.jpg" alt="The GPWM Simulation demo: a 3D table with objects reconstructed from photos, a Run button and a gallery of 135 objects." width="1600" height="1011" loading="lazy">
-        <button class="demo-run" type="button">Run the demo</button>
+    <div class="wrap try-row">
+      <div id="try-it">
+        <h3 class="res-h">Try it: drop a ball anywhere on the desk</h3>
+        <p class="lede">Click the table to drop an elastic or a sand ball.</p>
+        <div class="pd-stage" data-scene="realworld" data-only="drop" data-pad="0" role="img" aria-label="An interactive 3D view of the desk photo: click the table to drop an elastic or a sand ball there and watch the predicted fall."></div>
       </div>
-      <p class="demo-note"><a href="https://huggingface.co/spaces/robertren1/gpwm-simulation" target="_blank" rel="noopener">Open it on Hugging Face&nbsp;&#8599;</a> for full screen, or if the embedded demo reports a GPU quota limit.</p>
+      <div id="demo">
+        <h3 class="res-h">Try the full model</h3>
+        <p class="lede">Drop and drag objects reconstructed from photos, and GPWM predicts the next two seconds. The demo runs on Hugging Face and may take a moment to start.</p>
+        <div class="demo-actions"><button class="pill demo-go" type="button">Run the demo here</button><a class="pill" href="https://huggingface.co/spaces/robertren1/gpwm-simulation" target="_blank" rel="noopener">Open on Hugging Face&nbsp;&#8599;</a></div>
+        <div class="demo-embed"><img src="media/demo_poster.jpg" alt="The GPWM Simulation demo: a 3D table with objects reconstructed from photos, a Run button and a gallery of 135 objects." width="1600" height="1011" loading="lazy"><button class="demo-run" type="button">Run the demo</button></div>
+        <p class="demo-note">Open it on Hugging Face for full screen, or if the embedded demo reports a GPU quota limit.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="demo-live" data-src="https://robertren1-gpwm-simulation.hf.space/?__theme=light" hidden></div>
     </div>
     <script>
-    (function () {   /* swap the screenshot for the live Space on click */
+    (function () {   /* the live Space, full width under the row, on request */
       'use strict';
-      document.querySelectorAll('.demo-embed').forEach(box => {
-        box.addEventListener('click', () => {   // the button, or anywhere on the screenshot
-          if (box.classList.contains('live')) return;
-          const f = document.createElement('iframe');
-          f.src = box.dataset.src; f.title = 'GPWM Simulation demo'; f.allow = 'clipboard-write; fullscreen';
-          box.replaceChildren(f); box.classList.add('live');
-        });
-      });
+      const live = document.querySelector('.demo-live'), poster = document.querySelector('.try-row .demo-embed');
+      function go() {
+        if (!live.hidden) return;
+        const f = document.createElement('iframe');
+        f.src = live.dataset.src; f.title = 'GPWM Simulation demo'; f.allow = 'clipboard-write; fullscreen';
+        live.replaceChildren(f); live.hidden = false; poster.classList.add('live');
+        document.querySelectorAll('.demo-go, .demo-run').forEach(b => { b.hidden = true; });
+        live.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      }
+      document.querySelector('.demo-go').addEventListener('click', go);
+      poster.addEventListener('click', go);
     })();
     </script>
-  </section>
-
-  <section class="sec" id="results">
-    <div class="wrap">
-      <p class="eyebrow-s">Results</p>
-      <h2>Prediction, in numbers</h2>
-      <div class="bars" data-bars="prediction"></div>
-    </div>
   </section>
 
   <section class="sec" id="bibtex">
@@ -1261,24 +1291,24 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     planning: {
       label: 'Planning',
       methods: [
-        { name: 'GPWM', sub: 'with guidance', role: 'ours' }, { name: 'GPWM', sub: 'without guidance', role: 'ours2' },
-        { name: 'PointWorld', sub: 'MPPI-style', role: 'base' }, { name: 'GNS', sub: 'MPPI-style', role: 'base' },
+        { name: 'LNO', sub: 'GPWM', role: 'ours' }, { name: 'Noise CEM', sub: 'GPWM', role: 'ours2' },
+        { name: 'Action CEM', sub: 'GPWM', role: 'base' }, { name: 'Action CEM', sub: 'PointWorld', role: 'base' },
       ],
       tabs: [
-        { name: 'Pushing', metric: 'final object-to-target distance', unit: 'cm', better: 'lower', values: [4.26, 8.26, 8.30, 8.19], sd: [2.29, 4.33, 1.83, 2.00],
-          labels: ['4.26 ± 2.29', '8.26 ± 4.33', '8.30 ± 1.83', '8.19 ± 2.00'] },
-        { name: 'Pile Manipulation', tab: 'Pile', metric: 'displacement in the target direction', unit: 'cm', better: 'higher', values: [3.07, 1.48, 1.28, 0.36], sd: [0.99, 0.76, 1.07, 0.19],
-          labels: ['3.07 ± 0.99', '1.48 ± 0.76', '1.28 ± 1.07', '0.36 ± 0.19'] },
-        { name: 'Picking', metric: 'success', unit: 'of 25 trials', axis: 'successes', better: 'higher', values: [21, 4, 0, 0], max: 25,
-          labels: ['21/25', '4/25', '0/25', '0/25'] },
+        { name: 'Pushing', metric: 'task progress', unit: '%', better: 'higher', values: [57, 48, 0, 1], max: 100 },
+        { name: 'Pile Manipulation', tab: 'Pile', metric: 'task progress', unit: '%', better: 'higher', values: [23, 21, 1, 19], max: 100 },
+        { name: 'Picking', metric: 'task progress', unit: '%', better: 'higher', values: [56, 40, 0, 0], max: 100 },
       ],
-      short: 'Task performance after open-loop execution of generated actuator trajectories in simulation.',
-      caption: 'Results are aggregated over 50 seeds for Pushing and Pile Manipulation and 25 seeds for Picking (5 lift targets ' +
-        'for 5 objects). Pushing requires moving a rigid object toward a target over 60 steps; Pile Manipulation requires ' +
-        'displacing the centroid of a granular pile in a specified direction over 150 steps; and Picking requires grasping and ' +
-        'lifting an object to within 6 cm of its target. The baselines follow an MPPI-style procedure: candidate actuator ' +
-        'trajectories are evaluated by rolling them out in the corresponding learned world model over a 5-step lookahead, ' +
-        'and planning is repeated over the task horizon.',
+      fmt: v => String(v),
+      short: 'Task progress after executing each plan open-loop in simulation: the share of the initial object-to-target distance ' +
+        'closed by the end of the episode. LNO and Noise CEM search GPWM\u2019s latent noise; Action CEM searches actuator ' +
+        'actions, with GPWM or PointWorld as the world model.',
+      caption: 'Values at each task\u2019s planning budget on a single L40S GPU: 100 s for Pushing, 200 s for Pile Manipulation ' +
+        'and Picking. Results are averaged over 50 scenarios for Pushing and Pile Manipulation and 25 problems for Picking ' +
+        '(five objects, five targets each). Pushing requires a rod to reposition around a rigid block before pushing it toward ' +
+        'a target over 60 steps; Pile Manipulation requires a paddle to move a granular pile toward a target over 150 steps; ' +
+        'Picking requires establishing a stable grasp and lifting an object to a target over 60 steps. Noise-space and ' +
+        'action-space planning with GPWM use the same checkpoint.',
     },
   };
 })();
@@ -1290,7 +1320,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
    value above, the names under the bars (a second line says which variant), a one-line caption and the full one behind
    "about these numbers". In our palette: GPWM in the accent, its second variant in the light accent, baselines grey.
    <div data-bars="prediction"></div> draws PD.RESULTS.prediction (results.js); data-bars="prediction,planning" puts both
-   in one card behind a switch. Bars grow in on a tab change. */
+   in one card behind a switch, and data-layout="grid" shows every tab at once, one card each (data-cols="3": three a row). Bars grow in on a
+   tab change, or when the grid first comes into view. */
 (function () {
   'use strict';
   const PD = window.PD, NS = 'http://www.w3.org/2000/svg';
@@ -1341,95 +1372,117 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     });
     useSpec(0);
     function draw(grow) {
-      const t = spec.tabs[cur], W = plot.clientWidth || 600, mob = W < 440;
       btns.forEach((b, i) => { b.classList.toggle('on', i === cur); b.setAttribute('aria-selected', i === cur); });
-      title.innerHTML = `${t.name} <span class="bars-metric">· ${t.metric} (${t.unit})</span>`;
-      better.textContent = t.better === 'lower' ? '↓ lower is better' : '↑ higher is better';
-      better.classList.toggle('up', t.better !== 'lower');
-      const vals = t.values, hi = t.max || Math.max(...vals.map((v, i) => v == null ? 0 : v + (t.sd ? t.sd[i] : 0)));
-      const top = t.max || niceTop(hi * 1.08), tk = ticks(top, mob), fmtTick = v => Number.isInteger(Math.round(v * 1e6) / 1e6) ? String(Math.round(v)) : v.toFixed(1);
-      const label = i => (t.labels ? t.labels[i] : spec.fmt(vals[i]));
-      plot.textContent = '';
-      if (mob) return drawRows(t, W, vals, top, tk, fmtTick, label, grow);
-      const H = 262, ml = 56, mr = 4, mt = 24, mb = 44, pw = W - ml - mr, ph = H - mt - mb;
-      const n = vals.length, slot = pw / n, bw = Math.min(72, slot * 0.6), y = v => mt + ph - ph * v / top;
-      const s = svg('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${t.name}: ${t.metric}` }, plot);
-      svg('line', { x1: ml + 0.5, y1: mt - 6, x2: ml + 0.5, y2: mt + ph + 0.5, class: 'bars-axis' }, s);
-      svg('line', { x1: ml, y1: mt + ph + 0.5, x2: ml + pw, y2: mt + ph + 0.5, class: 'bars-axis' }, s);
-      for (const v of tk) {
-        const yy = Math.round(y(v)) + 0.5;
-        svg('line', { x1: ml - 4, y1: yy, x2: ml, y2: yy, class: 'bars-axis' }, s);
-        svg('text', { x: ml - 8, y: yy + 3.5, class: 'bars-tick', 'text-anchor': 'end' }, s, fmtTick(v));
-      }
-      svg('text', { x: 12, y: mt + ph / 2, class: 'bars-ytitle', transform: `rotate(-90 12 ${mt + ph / 2})`, 'text-anchor': 'middle' }, s, t.axis || t.unit);
-      vals.forEach((v, i) => {
-        const m = spec.methods[i], cx = ml + slot * (i + 0.5), x = cx - bw / 2;
-        svg('line', { x1: cx, y1: mt + ph + 0.5, x2: cx, y2: mt + ph + 4.5, class: 'bars-axis' }, s);
-        const nm = svg('text', { x: cx, y: mt + ph + 18, class: 'bars-name' + (m.role !== 'base' ? ' ours' : ''), 'text-anchor': 'middle' }, s, m.name);
-        if (m.sub) { void nm; svg('text', { x: cx, y: mt + ph + 32, class: 'bars-sub', 'text-anchor': 'middle' }, s, m.sub); }
-        if (v == null) {                          // no number: N/A over the axis
-          svg('text', { x: cx, y: mt + ph - 8, class: 'bars-val muted', 'text-anchor': 'middle' }, s, 'N/A');
-          return;
-        }
-        const h = Math.max(1.5, ph * v / top), r = svg('rect', { x, y: mt + ph - h, width: bw, height: h, fill: FILL[m.role], class: 'bars-bar' }, s);
-        if (grow && !PD.reduced) { r.style.transform = 'scaleY(0)'; requestAnimationFrame(() => requestAnimationFrame(() => { r.style.transform = ''; })); }
-        let labY = mt + ph - h - 8;
-        if (t.sd) {                               // one standard deviation, as a whisker
-          const a = y(Math.max(0, v - t.sd[i])), b = y(v + t.sd[i]);
-          svg('line', { x1: cx, y1: a, x2: cx, y2: b, class: 'bars-sd' }, s);
-          svg('line', { x1: cx - 5, y1: b, x2: cx + 5, y2: b, class: 'bars-sd' }, s);
-          labY = Math.min(labY, b - 8);
-        }
-        svg('text', { x: cx, y: labY, class: 'bars-val' + (m.role === 'ours' ? ' ours' : ''), 'text-anchor': 'middle' }, s, label(i));
-      });
-      // if two neighbouring names would touch, scale the names and their second lines down together
-      const names = [...s.querySelectorAll('.bars-name')], wd = names.map(e => e.getComputedTextLength());
-      let need = 0;
-      for (let k = 1; k < wd.length; k++) need = Math.max(need, (wd[k - 1] + wd[k]) / 2 + 8);
-      if (need > slot) {
-        const f = Math.max(0.78, slot / need);
-        names.forEach(e => { e.style.fontSize = (11.5 * f).toFixed(1) + 'px'; });
-        s.querySelectorAll('.bars-sub').forEach(e => { e.style.fontSize = (10.5 * f).toFixed(1) + 'px'; });
-      }
-    }
-    function drawRows(t, W, vals, top, tk, fmtTick, label, grow) {   // phones: one row per method, bars run to the right
-      const n = vals.length, lw = 104, ml = lw + 10, vw = t.sd ? 88 : 44, mr = vw + 8, rowH = 40, mt = 6, pw = W - ml - mr, H = mt + n * rowH + 34;
-      const x = v => ml + pw * v / top;
-      const s = svg('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${t.name}: ${t.metric}` }, plot);
-      const base = mt + n * rowH + 0.5;
-      svg('line', { x1: ml + 0.5, y1: mt, x2: ml + 0.5, y2: base, class: 'bars-axis' }, s);
-      svg('line', { x1: ml, y1: base, x2: ml + pw, y2: base, class: 'bars-axis' }, s);
-      for (const v of tk) {
-        const xx = Math.round(x(v)) + 0.5;
-        svg('line', { x1: xx, y1: base, x2: xx, y2: base + 4, class: 'bars-axis' }, s);
-        svg('text', { x: xx, y: base + 16, class: 'bars-tick', 'text-anchor': 'middle' }, s, fmtTick(v));
-      }
-      svg('text', { x: ml + pw, y: base + 30, class: 'bars-ytitle', 'text-anchor': 'end' }, s, t.axis || t.unit);
-      vals.forEach((v, i) => {
-        const m = spec.methods[i], cy = mt + i * rowH + rowH / 2, two = !!m.sub;
-        svg('text', { x: lw, y: cy + 4 - (two ? 6.5 : 0), class: 'bars-name' + (m.role !== 'base' ? ' ours' : ''), 'text-anchor': 'end' }, s, m.name);
-        if (two) svg('text', { x: lw, y: cy + 10.5, class: 'bars-sub', 'text-anchor': 'end' }, s, m.sub);
-        if (v == null) {                          // no number: N/A at the start of the bar
-          svg('text', { x: ml + 6, y: cy + 4, class: 'bars-val muted', 'text-anchor': 'start' }, s, 'N/A');
-          return;
-        }
-        const w = Math.max(1.5, pw * v / top), r = svg('rect', { x: ml + 1, y: cy - 8, width: w, height: 16, fill: FILL[m.role], class: 'bars-bar h' }, s);
-        if (grow && !PD.reduced) { r.style.transform = 'scaleX(0)'; requestAnimationFrame(() => requestAnimationFrame(() => { r.style.transform = ''; })); }
-        if (t.sd) {
-          const a = x(Math.max(0, v - t.sd[i])), b = x(v + t.sd[i]);
-          svg('line', { x1: a, y1: cy, x2: b, y2: cy, class: 'bars-sd' }, s);
-          svg('line', { x1: b, y1: cy - 5, x2: b, y2: cy + 5, class: 'bars-sd' }, s);
-        }
-        svg('text', { x: W - 2, y: cy + 4, class: 'bars-val' + (m.role === 'ours' ? ' ours' : ''), 'text-anchor': 'end' }, s, label(i));
-      });
+      chart(plot, title, better, spec, spec.tabs[cur], grow);
     }
     new ResizeObserver(() => draw(false)).observe(plot);
     draw(false);
   }
+  function chart(plot, title, better, spec, t, grow, narrowAt = 440) {   // tab t of a result set: its title and badge, and its bars in plot
+    const W = plot.clientWidth || 600, mob = W < narrowAt;
+    title.innerHTML = `${t.name} <span class="bars-metric"><span class="bars-dot">· </span>${t.metric} (${t.unit})</span>`;
+    better.textContent = t.better === 'lower' ? '↓ lower is better' : '↑ higher is better';
+    better.classList.toggle('up', t.better !== 'lower');
+    const vals = t.values, hi = t.max || Math.max(...vals.map((v, i) => v == null ? 0 : v + (t.sd ? t.sd[i] : 0)));
+    const top = t.max || niceTop(hi * 1.08), tk = ticks(top, mob), fmtTick = v => Number.isInteger(Math.round(v * 1e6) / 1e6) ? String(Math.round(v)) : v.toFixed(1);
+    const label = i => (t.labels ? t.labels[i] : spec.fmt(vals[i]));
+    plot.textContent = '';
+    if (mob) return chartRows(plot, spec, t, W, vals, top, tk, fmtTick, label, grow);
+    const H = 262, ml = 56, mr = 4, mt = 24, mb = 44, pw = W - ml - mr, ph = H - mt - mb;
+    const n = vals.length, slot = pw / n, bw = Math.min(72, slot * 0.6), y = v => mt + ph - ph * v / top;
+    const s = svg('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${t.name}: ${t.metric}` }, plot);
+    svg('line', { x1: ml + 0.5, y1: mt - 6, x2: ml + 0.5, y2: mt + ph + 0.5, class: 'bars-axis' }, s);
+    svg('line', { x1: ml, y1: mt + ph + 0.5, x2: ml + pw, y2: mt + ph + 0.5, class: 'bars-axis' }, s);
+    for (const v of tk) {
+      const yy = Math.round(y(v)) + 0.5;
+      svg('line', { x1: ml - 4, y1: yy, x2: ml, y2: yy, class: 'bars-axis' }, s);
+      svg('text', { x: ml - 8, y: yy + 3.5, class: 'bars-tick', 'text-anchor': 'end' }, s, fmtTick(v));
+    }
+    svg('text', { x: 12, y: mt + ph / 2, class: 'bars-ytitle', transform: `rotate(-90 12 ${mt + ph / 2})`, 'text-anchor': 'middle' }, s, t.axis || t.unit);
+    vals.forEach((v, i) => {
+      const m = spec.methods[i], cx = ml + slot * (i + 0.5), x = cx - bw / 2;
+      svg('line', { x1: cx, y1: mt + ph + 0.5, x2: cx, y2: mt + ph + 4.5, class: 'bars-axis' }, s);
+      const nm = svg('text', { x: cx, y: mt + ph + 18, class: 'bars-name' + (m.role !== 'base' ? ' ours' : ''), 'text-anchor': 'middle' }, s, m.name);
+      if (m.sub) { void nm; svg('text', { x: cx, y: mt + ph + 32, class: 'bars-sub', 'text-anchor': 'middle' }, s, m.sub); }
+      if (v == null) {                          // no number: N/A over the axis
+        svg('text', { x: cx, y: mt + ph - 8, class: 'bars-val muted', 'text-anchor': 'middle' }, s, 'N/A');
+        return;
+      }
+      const h = Math.max(1.5, ph * v / top), r = svg('rect', { x, y: mt + ph - h, width: bw, height: h, fill: FILL[m.role], class: 'bars-bar' }, s);
+      if (grow && !PD.reduced) { r.style.transform = 'scaleY(0)'; requestAnimationFrame(() => requestAnimationFrame(() => { r.style.transform = ''; })); }
+      let labY = mt + ph - h - 8;
+      if (t.sd) {                               // one standard deviation, as a whisker
+        const a = y(Math.max(0, v - t.sd[i])), b = y(v + t.sd[i]);
+        svg('line', { x1: cx, y1: a, x2: cx, y2: b, class: 'bars-sd' }, s);
+        svg('line', { x1: cx - 5, y1: b, x2: cx + 5, y2: b, class: 'bars-sd' }, s);
+        labY = Math.min(labY, b - 8);
+      }
+      svg('text', { x: cx, y: labY, class: 'bars-val' + (m.role === 'ours' ? ' ours' : ''), 'text-anchor': 'middle' }, s, label(i));
+    });
+    // if two neighbouring names would touch, scale the names and their second lines down together
+    const names = [...s.querySelectorAll('.bars-name')], wd = names.map(e => e.getComputedTextLength());
+    let need = 0;
+    for (let k = 1; k < wd.length; k++) need = Math.max(need, (wd[k - 1] + wd[k]) / 2 + 8);
+    if (need > slot) {
+      const f = Math.max(0.78, slot / need);
+      names.forEach(e => { e.style.fontSize = (11.5 * f).toFixed(1) + 'px'; });
+      s.querySelectorAll('.bars-sub').forEach(e => { e.style.fontSize = (10.5 * f).toFixed(1) + 'px'; });
+    }
+  }
+  function chartRows(plot, spec, t, W, vals, top, tk, fmtTick, label, grow) {   // a narrow plot: one row per method, bars run to the right
+    const n = vals.length, lw = 104, ml = lw + 10, vw = t.sd ? 88 : 44, mr = vw + 8, rowH = 40, mt = 6, pw = W - ml - mr, H = mt + n * rowH + 34;
+    const x = v => ml + pw * v / top;
+    const s = svg('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${t.name}: ${t.metric}` }, plot);
+    const base = mt + n * rowH + 0.5;
+    svg('line', { x1: ml + 0.5, y1: mt, x2: ml + 0.5, y2: base, class: 'bars-axis' }, s);
+    svg('line', { x1: ml, y1: base, x2: ml + pw, y2: base, class: 'bars-axis' }, s);
+    for (const v of tk) {
+      const xx = Math.round(x(v)) + 0.5;
+      svg('line', { x1: xx, y1: base, x2: xx, y2: base + 4, class: 'bars-axis' }, s);
+      svg('text', { x: xx, y: base + 16, class: 'bars-tick', 'text-anchor': 'middle' }, s, fmtTick(v));
+    }
+    svg('text', { x: ml + pw, y: base + 30, class: 'bars-ytitle', 'text-anchor': 'end' }, s, t.axis || t.unit);
+    vals.forEach((v, i) => {
+      const m = spec.methods[i], cy = mt + i * rowH + rowH / 2, two = !!m.sub;
+      svg('text', { x: lw, y: cy + 4 - (two ? 6.5 : 0), class: 'bars-name' + (m.role !== 'base' ? ' ours' : ''), 'text-anchor': 'end' }, s, m.name);
+      if (two) svg('text', { x: lw, y: cy + 10.5, class: 'bars-sub', 'text-anchor': 'end' }, s, m.sub);
+      if (v == null) {                          // no number: N/A at the start of the bar
+        svg('text', { x: ml + 6, y: cy + 4, class: 'bars-val muted', 'text-anchor': 'start' }, s, 'N/A');
+        return;
+      }
+      const w = Math.max(1.5, pw * v / top), r = svg('rect', { x: ml + 1, y: cy - 8, width: w, height: 16, fill: FILL[m.role], class: 'bars-bar h' }, s);
+      if (grow && !PD.reduced) { r.style.transform = 'scaleX(0)'; requestAnimationFrame(() => requestAnimationFrame(() => { r.style.transform = ''; })); }
+      if (t.sd) {
+        const a = x(Math.max(0, v - t.sd[i])), b = x(v + t.sd[i]);
+        svg('line', { x1: a, y1: cy, x2: b, y2: cy, class: 'bars-sd' }, s);
+        svg('line', { x1: b, y1: cy - 5, x2: b, y2: cy + 5, class: 'bars-sd' }, s);
+      }
+      svg('text', { x: W - 2, y: cy + 4, class: 'bars-val' + (m.role === 'ours' ? ' ours' : ''), 'text-anchor': 'end' }, s, label(i));
+    });
+  }
+  function mountGrid(host, spec) {              // every tab at once: one card per tab, the captions once under the grid
+    const grid = PD.el('div', 'bars-grid' + (host.dataset.cols === '3' ? ' cols-3' : ''), host);
+    const narrowAt = () => (getComputedStyle(grid).gridTemplateColumns.split(' ').length >= 3 ? 300 : 440);   // bars stay columns in a three-a-row card
+    const cards = spec.tabs.map(t => {
+      const card = PD.el('div', 'bars-card', grid), head = PD.el('div', 'bars-head', card);
+      return { t, title: PD.el('div', 'bars-title', head), better: PD.el('span', 'bars-better', head), plot: PD.el('div', 'bars-plot', card) };
+    });
+    PD.el('p', 'bars-cap', host).textContent = spec.short;
+    const more = PD.el('details', 'bars-more', host);
+    PD.el('summary', null, more, 'about these numbers');
+    PD.el('p', 'bars-cap', more).textContent = spec.caption;
+    const drawCard = (c, grow) => chart(c.plot, c.title, c.better, spec, c.t, grow, narrowAt());
+    cards.forEach(c => new ResizeObserver(() => drawCard(c, false)).observe(c.plot));
+    const io = new IntersectionObserver(es => {   // the bars grow in once, when the grid first comes into view
+      if (!es.some(e => e.isIntersecting)) return;
+      io.disconnect(); cards.forEach(c => drawCard(c, true));
+    }, { threshold: 0.15 });
+    io.observe(grid);
+  }
   PD.mountCharts = function () {
     document.querySelectorAll('[data-bars]').forEach(h => {
       const specs = h.dataset.bars.split(',').map(k => PD.RESULTS && PD.RESULTS[k.trim()]).filter(Boolean);
-      if (specs.length) mount(h, specs);
+      if (specs.length) (h.dataset.layout === 'grid' ? mountGrid(h, specs[0]) : mount(h, specs));
     });
   };
 })();
@@ -1752,10 +1805,11 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
 
 </script>
 <script>
-/* ParticleWorlds, one row per domain: its name, materials and actuation, its training frames with a bar for their share of
-   the whole dataset, and four recordings from the dataset looping side by side (simulator output, no model), each on a
-   light card with the particles as shaded balls, one colour per object (cloth violet, robots and tools warm grey), and a
-   soft shadow on the ground. Dragging clips show the commanded drag as an arrow on the driven patch while the drag is on.
+/* ParticleWorlds: the training frames as one bar, a segment per domain in its tone, with a legend; then a card per domain
+   (three a row, two on phones) with its name, materials and actuation and training frames, playing its four recordings
+   from the dataset one after another (simulator output, no model; the dots pick one), on a light card with the particles as
+   shaded balls, one colour per object (cloth violet, robots and tools warm grey), and a soft shadow on the ground. Hovering
+   a card or a legend entry lights its segment up. Dragging clips show the commanded drag as an arrow on the driven patch while the drag is on.
    Rows, facts and clips come from pack_dataset.py (the paper's dataset table; Pushing adds rod and gripper pushing). The
    stage sets its own height from the layout, and clips outside the window are not drawn. */
 (function () {
@@ -1768,9 +1822,11 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
   PD.scene('dataset', {
     create(api) {
       const v = new PD.View3D({ spin: 0, persp: 0.2 });
-      let d = null, lay = null, buf = null;
-      const L = {};
+      let d = null, lay = null, buf = null, hi = -1, clock = 0;
+      const L = {}, sel = [], t0 = [], shown = [], keys = [];
       const mk = (k, cls, html) => { L[k] = PD.el('div', cls, api.el); if (html != null) L[k].innerHTML = html; return L[k]; };
+      const keyBox = PD.el('div', 'ds-keys', api.el);   // the bar's legend
+      const lit = i => ({ enter: () => { hi = i; }, leave: () => { if (hi === i) hi = -1; } });
 
       PD.data('dataset').then(async rec => {
         for (const c of rec.clips) {
@@ -1783,45 +1839,62 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
         }
         buf = new Float32Array(3 * Math.max(...rec.clips.map(c => c.N)));
         rec.rows.forEach((r, i) => {
+          const share = 100 * r.frames / rec.total, pct = share < 1 ? share.toFixed(1) : Math.round(share), on = lit(i);
+          const key = PD.el('button', 'ds-key hot', keyBox, `<i></i>${r.name} <b>${pct}%</b>`); key.type = 'button';
+          key.addEventListener('pointerenter', on.enter); key.addEventListener('pointerleave', on.leave);
+          key.addEventListener('focus', on.enter); key.addEventListener('blur', on.leave);
+          key.addEventListener('click', () => { hi = hi === i ? -1 : i; });            // touch: tap to light a domain up
+          keys.push(key);
+          const hit = mk('h' + i, 'ds-hit hot');                                        // the card's clip, for hovering
+          hit.addEventListener('pointerenter', on.enter); hit.addEventListener('pointerleave', on.leave);
           mk('n' + i, 'dsname', r.name);
-          mk('m' + i, 'note wrap', `${r.materials}<br>${r.actuation}`);
-          const share = 100 * r.frames / rec.total;
-          mk('f' + i, 'note', `${num(r.frames)} frames · ${share < 1 ? share.toFixed(1) : Math.round(share)}%`);
+          mk('m' + i, 'note wrap', `${r.materials} · ${r.actuation}`);
+          mk('f' + i, 'note', `${num(r.frames)} frames · ${pct}%`);
           mk('x' + i, 'note wrap', r.note || '');
-          r.clips.forEach((ci, k) => mk(`t${i}_${k}`, 'note', rec.clips[ci].short));
+          mk('e' + i, 'note ds-ex', '');                                                // the example playing
+          const dots = mk('d' + i, 'ds-dots hot');
+          r.clips.forEach((ci, k) => {
+            const b = PD.el('button', 'ds-dot', dots); b.type = 'button';
+            b.setAttribute('aria-label', `${r.name}, example ${k + 1}: ${rec.clips[ci].short}`);
+            b.addEventListener('click', () => { sel[i] = k; t0[i] = clock; });
+          });
+          sel[i] = 0; t0[i] = null; shown[i] = -1;
         });
         d = rec; lay = null;
       });
 
-      function place(e, x, y, al = '') {
-        e.style.left = Math.round(x) + 'px'; e.style.top = Math.round(y) + 'px';
-        e.style.transform = al.includes('c') ? 'translateX(-50%)' : '';
-      }
+      function place(e, x, y) { e.style.left = Math.round(x) + 'px'; e.style.top = Math.round(y) + 'px'; }
+      // the bar on top, its legend under it, then the domains as cards: three a row (two on phones), each one clip at a time
       function layout() {
-        const W = api.w, mob = W < 760, pad = mob ? 16 : 40, lw = mob ? 0 : 270, gap = mob ? 10 : 14, cols = mob ? 2 : 4;
-        const tw = Math.floor((W - 2 * pad - lw - (cols - 1) * gap) / cols), th = Math.round(tw * (mob ? 0.78 : 0.7));
-        const head = mob ? 84 : 0, rowH = Math.max(mob ? 0 : 196, head + (mob ? 2 : 1) * (th + 26) + (mob ? 30 : 26));
-        const rows = d.rows.map((r, i) => {
-          const y = 16 + i * rowH, ty = y + head + 6;
-          const tiles = r.clips.map((_, k) => {
-            const c = k % cols, rr = Math.floor(k / cols);
-            return [pad + lw + c * (tw + gap), ty + rr * (th + 26), tw, th];
-          });
-          return { y, tiles };
-        });
-        const H = 16 + d.rows.length * rowH;
-        lay = { mob, pad, lw, tw, th, rows, rowH, H };
-        if (Math.abs(api.h - H) > 1) { api.stage.host.style.height = H + 'px'; }  // the stage takes the layout's height
-        d.rows.forEach((r, i) => {
-          const y = rows[i].y, bw = mob ? W - 2 * pad : lw - 40;
-          let yy = y + 2;                                                   // the label column, top to bottom
-          place(L['n' + i], pad, yy); yy += 30;
-          L['m' + i].style.width = bw + 'px'; place(L['m' + i], pad, yy); yy += (L['m' + i].offsetHeight || 28) + 6;
-          place(L['f' + i], pad, yy); yy += 18;
-          rows[i].bar = [pad, yy, bw]; yy += 14;
-          L['x' + i].style.width = bw + 'px'; L['x' + i].hidden = mob; place(L['x' + i], pad, yy);
-          r.clips.forEach((_, k) => { const t = rows[i].tiles[k]; place(L[`t${i}_${k}`], t[0], t[1] + t[3] + 6); });
-        });
+        const W = api.w, mob = W < 760, aw = Math.min(W - 2 * (mob ? 16 : 24), 1280), pad = (W - aw) / 2;
+        const cols = mob ? 2 : 3, gap = mob ? 12 : 22, cw = Math.floor((aw - (cols - 1) * gap) / cols), ch = Math.round(cw * (mob ? 0.82 : 0.66));
+        const barY = mob ? 6 : 14, barH = mob ? 10 : 12, rowGap = mob ? 22 : 34;
+        Object.assign(keyBox.style, { left: pad + 'px', top: (barY + barH + 12) + 'px', width: aw + 'px' });
+        let y = barY + barH + 12 + (keyBox.offsetHeight || 20) + (mob ? 22 : 30);
+        const cards = [];
+        for (let i0 = 0; i0 < d.rows.length; i0 += cols) {
+          let textH = 0;
+          for (let i = i0; i < Math.min(d.rows.length, i0 + cols); i++) {
+            const x = pad + (i - i0) * (cw + gap);
+            cards[i] = [x, y, cw, ch];
+            Object.assign(L['h' + i].style, { left: x + 'px', top: y + 'px', width: cw + 'px', height: ch + 'px' });
+            place(L['e' + i], x + 12, mob ? y + 8 : y + ch - 26);                       // phones: the example's name on top, clear of the dots
+            place(L['d' + i], x + cw - 8 - 4 * 18, y + ch - 30);
+            let yy = y + ch + 12;
+            place(L['n' + i], x, yy); yy += mob ? 26 : 32;
+            for (const k of ['m', 'f', 'x']) {
+              const el = L[k + i];
+              el.hidden = k === 'x' && (mob || !d.rows[i].note);
+              if (el.hidden) continue;
+              el.style.width = cw + 'px'; place(el, x, yy); yy += (el.offsetHeight || 16) + 2;
+            }
+            textH = Math.max(textH, yy - y - ch);
+          }
+          y += ch + textH + rowGap;
+        }
+        const H = y - rowGap + 16;
+        lay = { mob, pad, aw, barY, barH, cards, H };
+        if (Math.abs(api.h - H) > 1) api.stage.host.style.height = H + 'px';
       }
       function drawClip(r, c, s, az, el) {
         const T = c.T, f = Math.min(T - 1, s * (T - 1)), a = Math.floor(f), b = Math.min(T - 1, a + 1), w = f - a, N3 = c.N * 3;
@@ -1851,26 +1924,41 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
 
       function frame(time) {
         const ctx = api.ctx;
+        clock = time;
         if (!d) return;
         if (!lay) layout();
         const top = -api.stage.host.getBoundingClientRect().top, view = [top - 40, top + innerHeight + 40];   // the visible band, stage px
+        let x = lay.pad;                                                  // the dataset as one bar, a segment per domain
+        const sg = 2, wAll = lay.aw - sg * (d.rows.length - 1);
         d.rows.forEach((r, i) => {
-          const R = lay.rows[i];
-          if (i) D.line(ctx, lay.pad, Math.round(R.y - 12) + 0.5, api.w - lay.pad, Math.round(R.y - 12) + 0.5, C.g300);
-          const [bx, by, bw] = R.bar;                                     // the share of all training frames
-          ctx.fillStyle = C.g300; ctx.fillRect(bx, by, bw, 3);
-          ctx.fillStyle = C[TONE[i % TONE.length]]; ctx.fillRect(bx, by, Math.max(1.5, bw * r.frames / d.total), 3);
-          r.clips.forEach((ci, k) => {
-            const c = d.clips[ci], t = R.tiles[k];
-            if (t[1] + t[3] < view[0] || t[1] > view[1]) return;          // off-screen: skip
-            ctx.fillStyle = C.card; ctx.beginPath();
-            if (ctx.roundRect) ctx.roundRect(t[0], t[1], t[2], t[3], 10); else ctx.rect(t[0], t[1], t[2], t[3]);
-            ctx.fill();
-            const tl = PD.reduced ? LOOP : (time + 0.53 * (i * 4 + k)) % (LOOP + HOLD);
-            const az = r.az + (PD.reduced ? 0 : SWAY * Math.sin(2 * Math.PI * (time + 3 * k) / SWAY_T));
-            drawClip(t, c, Math.min(1, tl / LOOP), az, r.el);
-
-          });
+          const w = Math.max(2, wAll * r.frames / d.total), col = C[TONE[i % TONE.length]];
+          ctx.globalAlpha = hi < 0 || hi === i ? 1 : 0.28;
+          ctx.fillStyle = col; ctx.fillRect(x, lay.barY, w, lay.barH);
+          x += w + sg;
+          const sw = keys[i].firstChild;
+          if (sw.style.backgroundColor !== col) sw.style.backgroundColor = col;
+          keys[i].classList.toggle('on', hi === i);
+        });
+        ctx.globalAlpha = 1;
+        const P = LOOP + HOLD, FADE = 0.35;
+        d.rows.forEach((r, i) => {
+          if (t0[i] == null) t0[i] = time - 1.3 * i;                      // the cards change examples at different times
+          let el = time - t0[i];
+          if (!PD.reduced && el > P) { sel[i] = (sel[i] + 1) % r.clips.length; t0[i] = time; el = 0; }
+          const k = sel[i], c = d.clips[r.clips[k]];
+          if (shown[i] !== k) {
+            shown[i] = k; L['e' + i].textContent = c.short;
+            [...L['d' + i].children].forEach((b, j) => { b.classList.toggle('on', j === k); b.setAttribute('aria-pressed', j === k); });
+          }
+          const tl = lay.cards[i];
+          if (tl[1] + tl[3] < view[0] || tl[1] > view[1]) return;         // off-screen: skip
+          const card = () => { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(tl[0], tl[1], tl[2], tl[3], 12); else ctx.rect(tl[0], tl[1], tl[2], tl[3]); };
+          ctx.fillStyle = C.card; card(); ctx.fill();
+          const az = r.az + (PD.reduced ? 0 : SWAY * Math.sin(2 * Math.PI * (time + 3 * i) / SWAY_T));
+          drawClip(tl, c, PD.reduced ? 1 : Math.min(1, Math.max(0, el) / LOOP), az, r.el);
+          const a = PD.reduced ? 1 : Math.min(1, Math.max(0, el) / FADE, Math.max(0, P - el) / FADE);
+          if (a < 1) { ctx.globalAlpha = 1 - a; ctx.fillStyle = C.card; card(); ctx.fill(); ctx.globalAlpha = 1; }   // fade between examples
+          if (hi === i) { ctx.strokeStyle = C[TONE[i % TONE.length]]; ctx.lineWidth = 2; card(); ctx.stroke(); }
         });
       }
       return { enter() { lay = null; }, resize() { lay = null; }, frame };
@@ -3542,7 +3630,7 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
 
       // ---- layout and drawing
       function layout() {
-        const W = api.w, mob = W < 900, pad = mob ? 16 : 40, gap = 28;
+        const W = api.w, mob = W < 900, pad = mob ? (host.dataset.pad != null ? +host.dataset.pad : 16) : 40, gap = 28;
         const o = opts[st.opt], two = o && o.id === 'materials', asp = base ? base.aspect : 0.75;
         let vp = [], aw, vh, x0, top, pw;
         if (!mob) {                                  // the view at the photo's aspect and a fixed height, the panel beside it
@@ -3640,34 +3728,54 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
 </script>
 <script>
 /* Real world, as videos: path-traced renders of the real-world session's clean samples, composited into their images, with
-   nothing to click and no camera movement. One stage per group (data-group), its tiles side by side and playing together on
-   one clock: the input image, a crossfade to the objects lifted to the release pose (the video's first frame), the
-   prediction, a hold, again. Videos pause while their stage is off screen. A tile with an image instead of a video is a
-   still (the planning comparison's end states). Groups and files: encode_rw_video.py
-   (data/rwvideo.json, media/rw_*.mp4 and the matching input images rw_*.jpg). */
+   no camera movement. One stage per group (data-group; several groups comma-separated), its tiles side by side and playing
+   together on one clock: the input image, a crossfade to the objects lifted to the release pose (the video's first frame),
+   the prediction, a hold, again. data-switch="planning" makes a stage a player instead: buttons choose a task and an example
+   (SWITCH below). Videos pause while their stage is off screen. A tile with an image instead of a video is a still (the
+   planning comparison's end states). Groups and files: encode_rw_video.py (data/rwvideo.json, media/rw_*.mp4 and the
+   matching input images rw_*.jpg). */
 (function () {
   'use strict';
   const PD = window.PD;
   const INTRO = 1.2, FADE = 0.5, HOLD = 1.2, DRIFT = 0.25;
-  const ROWS = { photo: [1, 1], push: [4, 2], materials: [4, 2], generated: [3, 2], planning: [3, 1], plan_vs: [5, 2], planning_more: [3, 2],
-    plan_push: [4, 2], plan_pile: [2, 1] };   // tiles per row: desktop, phone
+  const ROWS = { photo: [1, 1], 'photo,push': [5, 2], push: [4, 2], materials: [4, 2], generated: [3, 2], planning: [3, 1], plan_vs: [5, 2],
+    planning_more: [3, 2], plan_push: [4, 2], plan_pile: [2, 1] };   // tiles per row: desktop, phone
+  const EVEN = { 'photo,push': 1, materials: 1, generated: 1 };      // the real-world grid: every row as wide as the column
+  // data-switch: one stage, a button per task and per example. An example is its task's clips whose id starts with a prefix,
+  // or three clips from an index.
+  const SWITCH = {
+    planning: [
+      { label: 'Pushing', group: 'plan_push', note: 'each plan executed open-loop in simulation',
+        eps: [['example 1', 'push_ep14_'], ['example 2', 'push_ep38_'], ['example 3', 'push_ep44_']] },
+      { label: 'Pile manipulation', group: 'plan_pile', note: 'each plan as the world model predicts it, and as executed in simulation',
+        eps: [['example 1', 'pile_ep025_'], ['example 2', 'pile_ep033_']] },
+      { label: 'Picking', group: 'plan_vs', note: 'where each plan leaves the object, executed in simulation',
+        eps: [['pasta box', 'pick_pasta_box_t1_'], ['soda can', 'pick_soda_can_t4_']] },
+      { label: 'More guided plans', group: 'planning_more', note: 'LNO plans carrying objects to their targets',
+        eps: [['set 1', 0], ['set 2', 3], ['set 3', 6]] },
+    ],
+  };
 
   PD.scene('rwvideo', {
     create(api) {
-      const host = api.stage.host, ui = api.stage.ui, group = host.dataset.group;
+      const host = api.stage.host, ui = api.stage.ui, tasks = SWITCH[host.dataset.switch] || null;
       const el = (tag, cls, parent, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; parent.appendChild(e); return e; };
       const box = el('div', 'rwv-box', host); host.insertBefore(box, api.stage.art);
       const msg = el('div', 'rwv-msg', ui, 'Loading…');
       const title = host.dataset.title ? el('div', 'rwv-title', ui, host.dataset.title) : null;   // a small title over the first tile
-      let tiles = [], lay = null, total = 0, t = 0, ready = false, onScreen = true;
+      const bar = tasks && el('div', 'rwv-bar', ui), eps = tasks && el('div', 'rwv-bar rwv-eps', ui), note = tasks && el('div', 'rwv-note', ui);
+      let idx = null, key = host.dataset.group || '', tiles = [], lay = null, total = 0, t = 0, ready = false, onScreen = true;
 
       new IntersectionObserver(es => {                  // off screen: stop decoding; the clock resumes where it was
         onScreen = es.some(e => e.isIntersecting);
         if (!onScreen) tiles.forEach(x => { if (!x.still && x.v && !x.v.paused) x.v.pause(); });
       }).observe(host);
 
-      PD.data('rwvideo').then(idx => {
-        const G = idx.groups[group] || [];
+      function build(G) {                               // (re)make the tiles for a list of clips, and start the clock again
+        tiles.forEach(x => {
+          if (!x.still) { x.v.pause(); x.v.removeAttribute('src'); x.v.load(); }
+          x.v.remove(); if (x.img) x.img.remove(); x.lab.remove();
+        });
         tiles = G.map(d => {
           if (!d.video) {                                 // a still: the image alone
             const v = el('img', 'rwv-video', box); v.alt = ''; v.src = d.image;
@@ -3685,19 +3793,49 @@ void main() { vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 >
           v.addEventListener('error', () => { tile.failed = true; lay = null; });
           return tile;
         });
-        total = INTRO + FADE + Math.max(0, ...G.map(d => d.dur || 0)) + HOLD;
-        ready = tiles.length > 0; msg.hidden = ready; layout();          // laid out at once, not when first on screen: no jump
+        total = INTRO + FADE + Math.max(0, ...G.map(d => d.dur || 0)) + HOLD; t = 0;
+        ready = tiles.length > 0; msg.hidden = ready;
         if (!ready) msg.textContent = 'No clips for this group.';
+        layout();                                       // laid out at once, not when first on screen: no jump
+      }
+      function choose(i, j) {                           // the player: task i, example j
+        const T = tasks[i], sel = T.eps[j][1], all = idx.groups[T.group] || [];
+        key = T.group;
+        [...bar.children].forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-pressed', k === i); });
+        eps.textContent = '';
+        T.eps.forEach(([label], k) => {
+          const b = el('button', 'bars-sw', eps, label); b.type = 'button'; b.onclick = () => choose(i, k);
+          b.classList.toggle('on', k === j); b.setAttribute('aria-pressed', k === j);
+        });
+        note.textContent = T.note;
+        build(typeof sel === 'number' ? all.slice(sel, sel + 3) : all.filter(d => d.id.startsWith(sel)));
+      }
+
+      PD.data('rwvideo').then(d => {
+        idx = d;
+        if (tasks) {
+          tasks.forEach((T, i) => { const b = el('button', 'bars-sw', bar, T.label); b.type = 'button'; b.onclick = () => choose(i, 0); });
+          choose(0, 0);
+        } else build(key.split(',').flatMap(g => idx.groups[g] || []));
       }).catch(e => { msg.textContent = 'The videos could not load here (' + (e && e.message ? e.message : e) + ').'; });
 
       // ---- layout: rows of tiles at equal heights, each at its video's aspect, a label under each
       function layout() {
         const W = api.w, mob = W < 760, gap = mob ? 8 : 14, labH = tiles.some(x => x.d.label) ? (mob ? 34 : 24) : 0;
-        const aw = Math.min(W - 2 * (mob ? 16 : 40), 1120), pad = (W - aw) / 2;             // one width for every group
-        const per = (ROWS[group] || [3, 2])[mob ? 1 : 0], maxH = group === 'photo' ? (mob ? 300 : Math.min(560, innerHeight * 0.62)) : mob ? 200 : 300;
+        const aw = Math.min(W - 2 * (mob ? 16 : 24), 1280), pad = (W - aw) / 2;             // one width for every group: the text column's
+        const per = (ROWS[key] || [3, 2])[mob ? 1 : 0];
+        const maxH = key === 'photo' ? (mob ? 300 : Math.min(560, innerHeight * 0.62)) : EVEN[key] ? (mob ? 200 : 320) : mob ? 200 : 300;
         const rows = [], vp = [];
         for (let i = 0; i < tiles.length; i += per) rows.push(tiles.slice(i, i + per));
         let y = title ? 30 : 0;
+        if (tasks) {                                    // the player's buttons, then its note: beside the examples, or under them
+          Object.assign(bar.style, { left: pad + 'px', top: '0px', width: aw + 'px' });
+          const by = (bar.offsetHeight || 32) + 8;
+          Object.assign(eps.style, { left: pad + 'px', top: by + 'px', width: '' });
+          const eh = eps.offsetHeight || 24, ew = eps.offsetWidth || 0, nw = note.scrollWidth || 0, beside = !mob && ew + 18 + nw <= aw;
+          Object.assign(note.style, beside ? { left: (pad + ew + 18) + 'px', top: (by + (eh - 16) / 2) + 'px' } : { left: pad + 'px', top: (by + eh + 8) + 'px' });
+          y = by + eh + (beside ? 18 : 8 + (note.offsetHeight || 16) + 14);
+        }
         rows.forEach(row => {
           const asp = row.map(x => x.d.w / x.d.h), sum = asp.reduce((a, b) => a + b, 0);
           const h = Math.floor(Math.min(maxH, (aw - (row.length - 1) * gap) / sum));
